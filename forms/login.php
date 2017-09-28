@@ -16,4 +16,4 @@ if (($log = log_user($mail, $password)) == -1) {
     $_SESSION['username'] = $log['username'];
 }
 
-header("Location: ../test.php");
+header("Location: ../gallery.php");

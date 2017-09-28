@@ -11,7 +11,7 @@ $montage = get_all_montage();
         <link rel="stylesheet" type="text/css" href="style/gallery.css">
         <link rel="stylesheet" type="text/css" href="style/parts.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
+        <link rel="stylesheet" type="text/css" href="style/test.css">
         <title>gallery</title>
     </head>
 
@@ -68,10 +68,30 @@ $montage = get_all_montage();
         </div>
         <?php
 } else {
-        ?> Connectes toi pour acceder à la galerie copain
-        <?php
+        ?>
+            <div class="overlay">
+                <div class="container">
+                    <form method="post" action="forms/login.php">
+                        <label> email : </label>
+                        <input id="mail" name="email" type="mail">
+                        <label> password : </label>
+                        <input id="password" name="password" type="password">
+                        <input name="submit" type="submit" value="Send">
+                        <a href="signup.php">Create account</a>
+                        <a href="forgot.php">Mot de passe oublié ?</a>
+                        <span>
+                    <?php
+                    if ($_SESSION['error']) {
+                        echo $_SESSION['error'];
+                    }
+        $_SESSION['error'] = null; ?>
+                  </span>
+                    </form>
+                </div>
+            </div>
+            <?php
     } ?>
-        <?php include './parts/footer.php' ?>
+                <?php include './parts/footer.php' ?>
 
     </body>
     <?php if (isset($_SESSION['id'])) {
