@@ -1,197 +1,221 @@
 body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    margin: 0;
+    margin-top: 0;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.welcome {
+    box-sizing: border-box;
+    padding: 2em;
+    width: 100%;
+    background-color: palegreen;
+    border: 1px solid green;
+    color: #000;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.closebtn {
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.closebtn:hover {
+    color: deepskyblue;
 }
 
 .body {
-  margin: 8px;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  width: 400em;
+    margin: 8px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400em;
 }
 
 .main {
-  width: 300em;
-  width: 100em;
+    width: 300em;
+    width: 100em;
 }
 
 .title {
-  text-align: center;
-  background-color: bisque;
-  margin-bottom: 0.375em;
+    text-align: center;
+    background-color: bisque;
+    margin-bottom: 0.375em;
 }
 
 .select {
-  width: 100%;
-  height: 115px;
+    width: 100%;
+    height: 115px;
 }
 
 .thumbnail {
-  width: 80px;
-  height . 80px;
+    width: 80px;
+    height . 80px;
 }
 
 .capture {
-  position: absolute;
-  top: 545px;
-  left: 0;
-  right: 0;
-  height: 50px;
-  background-color: rgba(162, 187, 202, 0, 5);
-  text-align: center;
-  line-height: 50px;
-  font-size: 25px;
-  display: none;
+    position: absolute;
+    top: 545px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: rgba(162, 187, 202, 0, 5);
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+    display: none;
 }
 
-.capture:hover, captureFile:hover {
-  cursor: pointer;
-  background-color: rgba(128, 154, 188, 0, 5)
+.capture:hover,
+captureFile:hover {
+    cursor: pointer;
+    background-color: rgba(128, 154, 188, 0, 5)
 }
 
 .camera {
-  width: 50px;
-  height: 50px;
+    width: 50px;
+    height: 50px;
 }
 
 .icon {
-  width: 100%;
-  margin-bottom: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
+    width: 100%;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
 }
 
 #diademe {
-  position: absolute;
-  width: 240px;
-  height: 180px;
-  top: 115px;
-  left: 180px;
+    position: absolute;
+    width: 240px;
+    height: 180px;
+    top: 115px;
+    left: 180px;
 }
 
 #lunettes {
-  position: absolute;
-  width: 240px;
-  height: 180px;
-  top: 315px;
-  left: 100px;
+    position: absolute;
+    width: 240px;
+    height: 180px;
+    top: 315px;
+    left: 100px;
 }
 
 #illuminati {
-  position: absolute;
-  width: 640px;
-  height: 480px;
-  top: 115px;
-  left: 0;
+    position: absolute;
+    width: 640px;
+    height: 480px;
+    top: 115px;
+    left: 0;
 }
 
 #barbe {
-  position: absolute;
-  width: 640px;
-  height: 480px;
-  top: 315px;
-  left: 100px;
+    position: absolute;
+    width: 640px;
+    height: 480px;
+    top: 315px;
+    left: 100px;
 }
 
 .removable:hover {
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
 }
 
 .captureFile {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 50px;
-  top: 1029px;
-  font-size: 25px;
-  display: none;
-  background-color: rgba(162, 187, 202, 0.5);
-  text-align: center;
-  line-height: 50px;
-  top: 1029px;
-  font-size: 25px;
-  display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50px;
+    top: 1029px;
+    font-size: 25px;
+    display: none;
+    background-color: rgba(162, 187, 202, 0.5);
+    text-align: center;
+    line-height: 50px;
+    top: 1029px;
+    font-size: 25px;
+    display: none;
 }
 
 .montage-div {
-  position: relative;
+    position: relative;
 }
 
 #webcam {
-  display: none;
+    display: none;
 }
 
 #camera-not-available {
-  width: 100%;
-  text-align: center;
-  height: 480px;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: white;
-  font-size: 40px;
-  line-height: 480px;
-  margin-bottom: 3px;
+    width: 100%;
+    text-align: center;
+    height: 480px;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: white;
+    font-size: 40px;
+    line-height: 480px;
+    margin-bottom: 3px;
 }
 
 @media screen and (max-width: 900px) {
-  .main {
-    width: 400px;
-  }
-  .capture {
-    top: 350px;
-  }
-  #diademe {
-    left: 44px;
-    top: 115px;
-    width: 400px;
-    height: 300px;
-  }
-  .body {
-    width: 640px;
-  }
-  #lunettes {
-    top: 223px;
-    width: 175px;
-    height: 135px;
-    left: 44px;
-  }
-  #illuminati {
-    top: 115px;
-    width: 145px;
-    height: 115px;
-    left: 115px;
-  }
-  #barbe {
-    top: 115px;
-    width: 175px;
-    height: 135px;
-    left: 44px;
-  }
-  #canvas {
-    width: 400px;
-  }
-  .captureFile {
-    top: 668px;
-  }
-  #camera-not-available {
-    height: 300px;
-    line-height: 160px;
-  }
+    .main {
+        width: 400px;
+    }
+    .capture {
+        top: 350px;
+    }
+    #diademe {
+        left: 44px;
+        top: 115px;
+        width: 400px;
+        height: 300px;
+    }
+    .body {
+        width: 640px;
+    }
+    #lunettes {
+        top: 223px;
+        width: 175px;
+        height: 135px;
+        left: 44px;
+    }
+    #illuminati {
+        top: 115px;
+        width: 145px;
+        height: 115px;
+        left: 115px;
+    }
+    #barbe {
+        top: 115px;
+        width: 175px;
+        height: 135px;
+        left: 44px;
+    }
+    #canvas {
+        width: 400px;
+    }
+    .captureFile {
+        top: 668px;
+    }
+    #camera-not-available {
+        height: 300px;
+        line-height: 160px;
+    }
 }
 
 @media screen and (max-width: 660px) {
-  .body {
-    display: inline;
-    width: 450px
-  }
-  .side {
-    width: 100%;
-    max-width: 400px;
-    margin-right: auto;
-    margin-left: auto;
-  }
+    .body {
+        display: inline;
+        width: 450px
+    }
+    .side {
+        width: 100%;
+        max-width: 400px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 }

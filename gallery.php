@@ -17,10 +17,16 @@ $montage = get_all_montage();
 
     <body>
         <?php include('./parts/header.php') ?>
-        <div class="body">
 
-            <?php if (isset($_SESSION['id'])) {
+        <?php if (isset($_SESSION['id'])) {
     ?>
+        <div class="body">
+            <div class="welcome" onclick="this.parentNode.style.display = 'none';">
+                <span onclick="this.parentNode.style.display = 'none';" class="closebtn">&otimes;</span>
+                <p>Bienvenue sur camagru,
+                    <?php htmlspecialchars($_SESSION['id']); ?>
+                </p>
+            </div>
 
             <div class="main">
                 <div class="select">
