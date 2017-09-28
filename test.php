@@ -1,30 +1,23 @@
 <?php
 session_start();
- ?>
+?>
 
-    <!DOCTYPE html>
-    <html>
+
+<!DOCTYPE html>
+<html>
     <header>
-        <link rel="stylesheet" type="text/css" href="style/index.css">
+        <link rel="stylesheet" type="text/css" href="style/test.css">
         <link rel="stylesheet" type="text/css" href="style/parts.css">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     </header>
-
     <body>
-       <?php include('parts/header.php') ?>
-       <?php include ('parts/footer.php') ?>
-        <div id="login">
-            <div class="title">LOGIN</div>
-            <div>
-              <?php
-              if (isset($_SESSION['id'])) {
-                  ?>
-                Tu es connecté,
-                <?php print_r(htmlspecialchars($_SESSION['username'])) ?>
-              <?php
-              } else {
-                  ?>
-                <form method="post" action="forms/login.php">
+        <?php include('parts/header.php') ?>
+        <?php if (isset($_SESSION['id'])) { ?>
+        <div class="lol">
+            Salut toi !
+        </div>
+<? } else { ?>
+        <div class="overlay">
+          <form method="post" action="forms/login.php">
                   <label> email : </label>
                   <input id="mail" name="email" type="mail" >
                   <label> password : </label>
@@ -39,11 +32,8 @@ session_start();
                     }
                   $_SESSION['error'] = null; ?>
                   </span>
-                </form>
-              <?php
-              } ?>
-
-            </div>
+                </form>  
         </div>
+    <?php }?>
     </body>
 </html>

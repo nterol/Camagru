@@ -1,13 +1,27 @@
 <?php
+function add_montage($userId, $imgPath)
+{
+    include_once('../set/database.php');
+
+    try {
+        $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = $dbh->prepare("INSERT INTO gallery (userid, img) VALUES (:userid, :img)");
+        $query->execute(array(':userid' => $userId, ':img' => $imgPath));
+        return (0);
+    } catch (PDOException $e) {
+        return ($e->getMessage());
+    }
+}
 
 function get_all_montage()
 {
     include_once('../set/database.php');
 
     try {
-        $dbc = new PDOException($DB_DSN, $DB_USER, $DB_PSSWD);
-        $dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = $dbc->prepare("SELECT userid, img FROM gallery");
+        $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = $dbh->prepare("SELECT userid, img FROM gallery");
         $query->execute();
 
         $i = 0;
@@ -24,40 +38,101 @@ function get_all_montage()
     }
 }
 
-function get_montage($start, $nb)
-{
-    include_once('../setup/database.php');
-}
-
-
 function remove_montage($uid, $img)
 {
-    include_once('../setup/database.php');
+    include_once('../set/database.php');
 
     try {
-        $dbc = new PDO($DB_DSN, $DB_USER, $DP_PSSWD);
-        $dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = $dbc->prepare("SELECT * FROM gallery WHERE img=:img AND userid=:userid");
-        $query->execute(array(':userid' => $uid, ':img' => $img));
+        $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = $dbh->prepare("SELECT * FROM gallery WHERE img=:img AND userid=:userid");
+        $query->execute(array(':img' => $img, ':userid' => $uid));
+
         $val = $query->fetch();
         if ($val == null) {
             $query->closeCursor();
-            return (-1);
+            return(-1);
         }
         $query->closeCursor();
-        $query = $dbc->prepare("DELETE FROM likes WHERE galleryid=:galleryid");
+
+        $query = $dbh->prepare("DELETE FROM `like` WHERE galleryid=:galleryid");
+        $query->execute(array(':galleryid' => $val['id']));
+        $query->closeCursor;
+
+        $query = $dbh->prepare("DELETE FROM comment WHERE galleryid=:galleryid");
         $query->execute(array(':galleryid' => $val['id']));
         $query->closeCursor();
 
-        $query = $dbc->prepare("DELETE FROM comments WHERE galleryid=:galleryid");
-        $query->execute(array(':galleryid' => $val['id']));
+        $query = $dbh->prepare("DELETE FROM gallery WHERE img=:img AND userid=:userid");
+        $query->execute(array(':img' => $img, ':userid' => $uid));
         $query->closeCursor();
 
-        $query = $dbc->prepare("DELETE FROM gallery WHERE img=:img AND userid=:userid");
-        $query->execute(array(':userid' => $uid, ':img' => $img));
-        $query->closeCursor();
         return (0);
     } catch (PDOException $e) {
         return ($e->getMessage());
+    }
+}
+
+
+function get_some_montages($start, $nb)
+{
+    include_once('../set/database.php');
+
+    try {
+        if ($start < 0) {
+            $start = 0;
+        }
+        $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = $dbh->prepare("SELECT userid, img, id FROM gallery WHERE id > :id ORDER BY id ASC LIMIT :lim");
+        $query->bindValue(':lim', $nb + 1, PDO::PARAM_INT);
+        $query->bindValue(':id', $start, PDO::PARAM_INT);
+        $query->execute();
+
+
+        $i = 0;
+        $tab = null;
+        while (($val = $query->fetch())) {
+            $tab[$i] = $val;
+            $i++;
+        }
+        $query->closeCursor();
+
+        return ($tab);
+    } catch (PDOException $e) {
+        $s;
+        $s['error'] = $e->getMessage();
+        return ($s);
+    }
+}
+
+function get_other_montages($start, $nb)
+{
+    include_once('../set/database.php');
+    try {
+        if ($start < 0) {
+            $start = 0;
+        }
+        $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = $dbh->prepare("SELECT userid, img, id FROM gallery WHERE id > :id ORDER BY id ASC LIMIT :lim");
+        $query->bindValue(':lim', $nb + 1, PDO::PARAM_INT);
+        $query->bindValue(':id', $start, PDO::PARAM_INT);
+        $query->execute();
+
+        $i = 0;
+        $tab = null;
+        while (($val = $query->fetch())) {
+            if ($i >= $nb) {
+                $tab['more'] = true;
+            } else {
+                $tab[$i] = $val;
+            }
+            $i++;
+        }
+    } catch (PDOException $e) {
+        $s;
+        $s['error'] = $e->getMessage();
+        return ($s);
     }
 }
