@@ -21,10 +21,10 @@ $montage = get_all_montage();
         <?php if (isset($_SESSION['id'])) {
     ?>
         <div class="body">
-            <div class="welcome" onclick="this.parentNode.style.display = 'none';">
+            <div class="welcome" onclick="this.style.display = 'none';">
                 <span onclick="this.parentNode.style.display = 'none';" class="closebtn">&otimes;</span>
                 <p>Bienvenue sur camagru,
-                    <?php htmlspecialchars($_SESSION['id']); ?>
+                    <?php htmlspecialchars($_SESSION['username']); ?>
                 </p>
             </div>
 
@@ -65,7 +65,7 @@ $montage = get_all_montage();
             if ($montages[$i]['userid'] === $_SESSION['id']) {
                 $class .= "removable";
             }
-            $gallery .= "<img class=\"" .$class . "\" src=\"./montage/" . $montages[$i]['img'] . "\"data-userid=\"" .$montages[$i]['userid']. "\"><img>";
+            $gallery .= "<img class=\"" .$class . "\" src=\"./montage/" . $montages[$i]['img'] . "\"data-userid=\"" .$montages[$i]['userid']. "\"/>";
         }
         echo $gallery;
     } ?>
