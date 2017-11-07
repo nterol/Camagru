@@ -1,0 +1,7 @@
+# ESLINT Configuration #
+########################
+.eslintrc.js
+
+# JUNK #
+########
+.DS_Store
