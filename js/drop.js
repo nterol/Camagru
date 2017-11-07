@@ -1,20 +1,20 @@
-const montage = document.getElementByClassName('removable');
-const parent = document.getElementById('miniatures');
+var montage = document.getElementByClassName("removable");
+var parent = document.getElementById("miniatures");
 
+for (let i = 0; i < montage.length; i++) {
+  montage[i].onclick = event => {
+    var pathToImg = (event.srcElement && event.srcElement.src) || (event.target && event.target.src);
+    console.log(pathToImg);
+    var srcTab = pathToImg.split('/');
+    var img = srcTab[srcTab.length - 1];
 
-for (let i = 0; i < montages.length; i++) {
-    montage[i].onclick = function (event) {
-        const pathToImg = (event.srcElement && event.srcElement.src) || (event.target && event.target.src);
-        const srcTab = pathToImg.split('/');
-        const src = srcTab[srcTab.length - 1];
-
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText == 'OK') {
-                parent.removeChild(event.srcElement || event.target);
-            }
-            xhr.open("POST", "./forms/removemontage.php", true);
-            xhr.setRequestHeader("Content-type", "applications/x-www-form-urlencoded");
-            xhr.send("src=" + src);
-        };
-    }
+    var req = new XMLHttpRequest();
+    req.open("POST", "./forms/removemontage.php", true);
+    req.onreadystatechange = () => {
+      if (req.readyState == 4 && (req.status == 200 || req.status == 0) && req.responseText == "OK")
+        parent.removeChild(event.srcElement || event.target);
+    };
+    req.setRequestHeader("Content-Type", "application/-x-www-form-urlencoded");
+    req.send("src=" + img);
+  }
+}

@@ -20,7 +20,7 @@ fileInput.onchange = function (event) {
         var split = img.src.split("/")
         var file = split[split.length - 1];
 
-        switch {
+        switch (file) {
             case (file === "diademe.png"):
                 canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 0, 0, 640, 480)
                 break

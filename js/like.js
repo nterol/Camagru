@@ -5,6 +5,7 @@ var clientLikes = [];
 var clientDislikes = [];
 
 for (let i = 0; i < likes.length; i++) {
+
     likes[i].onclick = event => {
         var src = (event.srcElement && event.srcElement.getAttribute('data-image') || event.target.getAttribute('data-image'));
         var xhr = new XMLHttpRequest();
@@ -22,7 +23,7 @@ for (let i = 0; i < likes.length; i++) {
     }
 }
 
-for (let i = 0, i < dislikes.length; i++) {
+for (i = 0; i < dislikes.length; i++) {
     dislikes[i].onclick = event => {
         var src = (event.srcElement && event.srcElement.getAttribute('date-image') || event.target.getAttribute('data-image'));
         var xhr = new XMLHttpRequest();
