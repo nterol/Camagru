@@ -5,7 +5,7 @@
         try {
             $fdp = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
             $fdp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = $fdp->prepare("INSERT INTO `like`(userid, galleryid, type) SELECT :userid, id, :type FROM gallery WHERE img=:img");
+            $query = $fdp->prepare("INSERT INTO `likes`(userid, galleryid, type) SELECT :userid, id, :type FROM gallery WHERE img=:img");
             $query->execute(array(':userid' => $uid, ':img' => $img, ':type' => $type));
             return (0);
         } catch (PDOException $e) {
@@ -19,7 +19,7 @@
         try {
             $fdp = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
             $fdp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = $fdp->prepare("INSERT INTO `like`(userid, galleryid, type) SELECT :userid, id, :type FROM gallery WHERE img=:img");
+            $query = $fdp->prepare("INSERT INTO `likes`(userid, galleryid, type) SELECT :userid, id, :type FROM gallery WHERE img=:img");
             $query->execute(array(':userid' => $uid, ':img' => $img, ':type' => $type));
             return (0);
         } catch (PDOException $e) {
@@ -33,7 +33,7 @@
         try {
             $fdp = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
             $fdp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = $fdp->prepare("UPDATE `like`, gallery WHERE `like`.userid=:userid AND `like`.galleryid=gallery.id AND gallery.img=:img");
+            $query = $fdp->prepare("UPDATE `likes`, gallery WHERE `likes`.userid=:userid AND `likes`.galleryid=gallery.id AND gallery.img=:img");
             $query->execute(array(':userid' => $uid, ':img' => $img));
             $val = $query->fetch();
             $query->closeCursor();
@@ -49,7 +49,7 @@
         try {
             $fdp = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
             $fdp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = $fdp->prepare("SELECT type FROM `like`, gallery WHERE `like`.galleryid=gallery.id AND gallery.img=:img AND `like`.type='L'");
+            $query = $fdp->prepare("SELECT type FROM `likes`, gallery WHERE `likes`.galleryid=gallery.id AND gallery.img=:img AND `likes`.type='L'");
             $query->execute(array(':img'=> $img));
 
             $count = 0;
@@ -69,7 +69,7 @@
         try {
             $fdp = new PDO($DS_DSN, $DB_USER, $DB_PSSWD);
             $fdp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = $fdp->prepare("SELECT type FROM `like`, gallery WHERE `like`.galleryid=gallery.id AND gallery.img=:img AND `like`.type = 'D'");
+            $query = $fdp->prepare("SELECT type FROM `likes`, gallery WHERE `likes`.galleryid=gallery.id AND gallery.img=:img AND `likes`.type = 'D'");
             $query->execute(array('img' => $img));
         } catch (PDOException $e) {
           return ($e->getMessage());
