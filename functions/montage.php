@@ -179,7 +179,7 @@ function get_comment($src) {
   }
 }
 
-function get_info($src) {
+function get_user_info($src) {
   include_once './setup/database.php';
 
   try {

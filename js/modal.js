@@ -29,8 +29,8 @@ window.onclick = event => {
 }
 
 send.onclick = event => {
-  com = comment.value;
-  if ( com == null || com == "")
+  var com = comment.value;
+  if (com == null || com == "")
     return;
 
 var tmp = imageSelected.split('/');
@@ -52,4 +52,8 @@ req.onreadystatechange = () => {
 };
 req.setRequestHeader("Content-type", "application/-x-www-urlencoded");
 req.send("img=" + imagePath + "&comment=" + com);
+}
+
+function escapeHtml(unsafe) {
+  return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
