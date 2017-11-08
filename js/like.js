@@ -23,7 +23,7 @@ for (let i = 0; i < likes.length; i++) {
     }
 }
 
-for (i = 0; i < dislikes.length; i++) {
+for (let i = 0; i < dislikes.length; i++) {
     dislikes[i].onclick = event => {
         var src = (event.srcElement && event.srcElement.getAttribute('date-image') || event.target.getAttribute('data-image'));
         var xhr = new XMLHttpRequest();
@@ -58,8 +58,8 @@ function current_user_add_like(src) {
     if (clientDislikes == [] || clientDislikes[src] == undefined || clientDislikes[src] == null)
         return;
 
-    var span = document.querySelectorAll("[data-src'" + src + "']")[1];
-    var prev = span.innerHTML;
+    span = document.querySelectorAll("[data-src'" + src + "']")[1];
+    prev = span.innerHTML;
     span.innerHTML = eval(prev * 1 - 1);
     clientDislikes[src] = null;
 }
