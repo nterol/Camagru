@@ -50,7 +50,7 @@ function handleVideo(stream) {
   video.style.display = "block";
   notAvailable.style.display = "none";
   button.onclick = function() {
-    var image = new image;
+    var image = new Image();
     canvas.style.display = "none";
     pickFile.style.display = "none";
 
@@ -103,13 +103,13 @@ function handleVideo(stream) {
   };
 }
 
-function videoError(e) {
+function videoError() {
   cameraAvailable = false;
   video.style.display = "none";
   notAvailable.style.display = "block";
 }
 
-function onCheckBocChecked(checkbox) {
+function onCheckBoxChecked(checkbox) {
   if (cameraAvailable) {
     button.style.display = "block";
     if (checkbox.id === "diademe.png") {

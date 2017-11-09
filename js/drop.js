@@ -1,4 +1,4 @@
-var montage = document.getElementByClassName("removable");
+var montage = document.getElementsByClassName("removable");
 var parent = document.getElementById("miniatures");
 
 for (let i = 0; i < montage.length; i++) {

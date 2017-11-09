@@ -35,7 +35,7 @@ $montage = get_all_montage();
                     <img class="thumbnail" src="img/lunettes.png" />
                     <input id="lunettes" type="radio" name="img" value="./img/lunettes.png" onclick="onCheckBoxChecked(this)">
                     <img class="thumbnail" src="img/illuminati.png" />
-                    <input id="illuminati.png" type="radio" name="img" value="./img/illuminati.png" onclick="onCHeckBoxChecked(this)">
+                    <input id="illuminati.png" type="radio" name="img" value="./img/illuminati.png" onclick="onCheckBoxChecked(this)">
                     <img class="thumbnail" src="img/barbe.png" />
                     <input id="barbe.png" type="radio" name="img" value="./img/barbe.png" onclick="onCheckBoxChecked(this)">
                 </div>
