@@ -1,8 +1,8 @@
 // Retrieve values from views.php
 
 var modal = document.getElementById('modal');
-var montage = document.getElementByClassName('icon');
-var span = document.getElementByClassName('close');
+var montage = document.getElementsByClassName('icon');
+var span = document.getElementsByClassName('close');
 var imgModal = document.getElementById('img-modal');
 var send = document.getElementById('send-comment');
 var comment = document.getElementById('comment');

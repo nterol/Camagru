@@ -62,12 +62,9 @@
       <div class="modal-footer">
         <textarea
         <?php if(!$_SESSION['id']) echo "disabled"?> id="comment" placeholder="Laisse un gentil com..." rows="10" cols="50" maxlength="255"></textarea>
-        <div <?php
-        if($_SESSION['id'])
-          echo "disabled"
-        ?>
-        id="send-comment" class="button-send".<?php
-        if (!$_SESSION['id']) echo "disabled"?>."">Send</div>
+        <div 
+        id="send-comment" class="button-send <?php
+        if (!$_SESSION['id']) echo "disabled"?>"">Send</div>
       </div>
     </div>
   </div>
