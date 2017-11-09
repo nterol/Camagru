@@ -16,8 +16,7 @@ if ($uid == "" ||
     $comment == null || 
     $comment == "" || 
     $img == null || 
-    $img == "" || 
-    strlen($comment) > 255)
+    $img == "" || strlen($comment) > 255)
     return ;
 $val = comment($uid, $img, $comment);
 $userInfos = get_user_info($img);
