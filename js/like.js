@@ -1,5 +1,5 @@
 var likes = document.getElementsByClassName("button-like");
-var dislikes = document.getElementsByClassName("button-dislike")
+var dislikes = document.getElementsByClassName("button-dislike");
 
 var clientLikes = [];
 var clientDislikes = [];

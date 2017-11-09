@@ -9,7 +9,7 @@ include_once("../functions/mail.php");
 $uid = $_SESSION['id'];
 $username = $_SESSION['username'];
 $img = $_POST['img'];
-$comment = $_POST['comment'];
+$comment = $_POST['comments'];
 
 if ($uid == "" || 
     $uid == null || 
@@ -30,7 +30,4 @@ if ($val == 0) {
     }
     echo htmlspecialchars($username);
 }
-
-
-
 ?>
