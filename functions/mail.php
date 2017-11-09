@@ -43,3 +43,24 @@ function send_forgot_mail($mail, $username, $token, $host)
   ';
     mail($mail, $subject, $message, $headers);
 }
+
+function send_comment_mail($mail, $toUsername, $comment, $fromUsername, $img, $host) {
+  $subject = "Someone commented your picture !";
+  $headers = 'MIME_Version: 1.0'."\r\n";
+  $headers .= 'From <nterol@free.fr>'."\r\n";
+
+  $message = '
+  <html>
+    <head>
+      <title>'. $subject . '</title>
+    </head>
+    <body>
+    Hello,'. htmlspecialchars($toUsername). '</br>
+    A user just commented one of your Picture !</br>
+      <img src="http://'. $ip . '/montage/'. $img . '" style="width: 388px;height: 291px; display:block; margin: 20px;"></img>
+      <span>'. htmlspecialchars($fromUsername) . ': '. htmlspecialchars($comment). '</span>
+    </body>
+  </html>';
+  mail($mail, $subject, $message, $headers);
+}
+?>
