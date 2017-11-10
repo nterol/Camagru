@@ -16,7 +16,7 @@ $montage = get_all_montage();
     </head>
 
     <body>
-        <?php include('./parts/header.php') ?>
+        <?php //include('./parts/header.php') ?>
 
         <?php if (isset($_SESSION['id'])) {
     ?>
@@ -31,13 +31,13 @@ $montage = get_all_montage();
             <div class="main">
                 <div class="select">
                     <img class="thumbnail" src="img/diademe.png" />
-                    <input id="diademe.png" type="radio" name="img" value="./img/diademe.png" onclick="onCheckBoxChecked(this)">
+                    <input class= "box" id="diademe.png" onclick="boxChecked(this)" type="radio" name="img" value="./img/diademe.png">
                     <img class="thumbnail" src="img/lunettes.png" />
-                    <input id="lunettes" type="radio" name="img" value="./img/lunettes.png" onclick="onCheckBoxChecked(this)">
+                    <input class="box" id="lunettes" type="radio" name="img" value="./img/lunettes.png" onclick="boxChecked(this)">
                     <img class="thumbnail" src="img/illuminati.png" />
-                    <input id="illuminati.png" type="radio" name="img" value="./img/illuminati.png" onclick="onCheckBoxChecked(this)">
+                    <input class="box" id="illuminati.png" type="radio" name="img" value="./img/illuminati.png" onclick="boxChecked(this)">
                     <img class="thumbnail" src="img/barbe.png" />
-                    <input id="barbe.png" type="radio" name="img" value="./img/barbe.png" onclick="onCheckBoxChecked(this)">
+                    <input class="box" id="barbe.png" type="radio" name="img" value="./img/barbe.png" onclick="boxChecked(this)">
                 </div>
                 <video width="100%" autoplay="true" id="webcam"></video>
                 <div id="camera-not-available">LA CAMERA N'EST PAS DISPONIBLE</div>
@@ -97,14 +97,14 @@ $montage = get_all_montage();
             </div>
             <?php
     } ?>
-                <?php include './parts/footer.php' ?>
+                <?php //include './parts/footer.php' ?>
 
     </body>
     <?php if (isset($_SESSION['id'])) {
         ?>
-    <script type="text/javascript" src="js/webcam.js"></script>
-    <script type="text/javascript" src="js/drop.js"></script>
-    <script type="text/javascript" src="js/import.js"></script>
+    <script type="text/javascript" src="./js/webcam.js"></script>
+    <script type="text/javascript" src="./js/drop.js"></script>
+    <script type="text/javascript" src="./js/import.js"></script>
     <?php
     }
 ?>

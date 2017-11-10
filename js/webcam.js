@@ -1,5 +1,6 @@
 var video = document.querySelector('#webcam');
 var canvas = document.getElementById('canvas');
+var box = document.getElementsByClassName('box');
 var button = document.getElementById('pickImage');
 var miniatures = document.getElementById('miniatures');
 var inputFile = document.getElementById('takePicture');
@@ -109,25 +110,25 @@ function videoError() {
   notAvailable.style.display = "block";
 }
 
-function onCheckBoxChecked(checkbox) {
-  if (cameraAvailable) {
-    button.style.display = "block";
-    if (checkbox.id === "diademe.png") {
-      diademe.style.display = "block";
-      lunettes.style.display = "none";
-      illuminati.style.display = "none";
-      barbe.style.display = "none";
-    } else if (checkbox.id === "lunettes.png") {
-      diademe.style.display = "none";
-      lunettes.style.display = "block";
-      illuminati.style.display = "none";
-      barbe.style.display = "none";
-    } else if (checkbox.id === "illuminati.png") {
+  function boxChecked(box) {
+    if (cameraAvailable) {
+      button.style.display = "block";
+      if (box.id === "diademe.png") {
+        diademe.style.display = "block";
+        lunettes.style.display = "none";
+        illuminati.style.display = "none";
+        barbe.style.display = "none";
+      } else if (box.id === "lunettes.png") {
+        diademe.style.display = "none";
+        lunettes.style.display = "block";
+        illuminati.style.display = "none";
+        barbe.style.display = "none";
+    } else if (box.id === "illuminati.png") {
       diademe.style.display = "none";
       lunettes.style.display = "none";
       illuminati.style.display = "block";
       barbe.style.display = "none";
-    } else {
+    } else if (box.id === "barbe.png") {
       diademe.style.display = "none";
       lunettes.style.display = "none";
       illuminati.style.display = "none";
@@ -138,29 +139,25 @@ function onCheckBoxChecked(checkbox) {
   if (inputFile.files.length) {
     var image = new Image();
     var img = new Image();
-    image.addEventListener("load", function() {
+    image.addEventListener("load", () => {
       canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
       canvas.getContext("2d").drawImage(image, 0, 0, image.width, image.height, 0, 0, 640, 480);
-      var data64Img = canvas.toDataURL(image.type);
+      var data64img = canvas.toDataURL(image.type);
       window.URL.revokeObjectURL(file);
 
-      img.src = document.querySelector('input[name="img"]: checked').value;
-      var split = img.src.split('/');
+      img.src = document.querySelector('input[name="img"]:checked').value;
+      var split = img.src.split("/");
       var file = split[split.length - 1];
 
-      if (file === "diademe.png") {
-        canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 0, 0, 648, 480);
-      } else if (file === "lunettes.png") {
-        canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 0, 0, 648, 480);
-      } else if (file === "illuminati.png") {
-        canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 0, 0, 648, 480);
-      } else {
-        canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 0, 0, 648, 480);
-      }
-
-      pickFile.onclick = function() {
-        sendMontage(data64Img, file);
-      }
+      if (file === "diademe.png")
+        canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 100, 300, 240, 180);
+      else if (file === "lunettes.png")
+        canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 100, 200, 240, 180);
+      else if (file === "illuminati.png")
+        canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 100, 250, 540, 540);
+      else if (file === "barbe.png")
+        canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 100, 300, 512, 512);
+      pickFile.onclick = () => sendMontage(data64img, file);
     }, false);
     image.src = window.URL.createObjectURL(inputFile.files[0]);
   }
