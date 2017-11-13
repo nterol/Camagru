@@ -6,7 +6,8 @@ body {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: auto;
     grid-column-gap: 1em;
-    grid-template-areas: "header header header header header header" "welcome welcome welcome welcome welcome welcome" ". main main main side ."
+    grid-template-areas: 
+        "header header header header header header" "welcome welcome welcome welcome welcome welcome" ". main main main side ."
 }
 
 .welcome {
