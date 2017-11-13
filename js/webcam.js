@@ -1,6 +1,5 @@
 var video = document.querySelector('#webcam');
 var canvas = document.getElementById('canvas');
-var box = document.getElementsByClassName('box');
 var button = document.getElementById('pickImage');
 var miniatures = document.getElementById('miniatures');
 var inputFile = document.getElementById('takePicture');
@@ -11,7 +10,6 @@ var diademe = document.getElementById('diademe');
 var lunettes = document.getElementById('lunettes');
 var illuminati = document.getElementById('illuminati');
 var barbe = document.getElementById('barbe');
-
 var cameraAvailable = false;
 
 var promiseOldGUM = function(constraints) {
@@ -55,7 +53,7 @@ function handleVideo(stream) {
     canvas.style.display = "none";
     pickFile.style.display = "none";
 
-    image.addEventListener("load", function() {
+    image.addEventListener("load", () => {
       if (file === "diademe.png") {
         canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 0, 0, 640, 480);
       } else if (file === "lunettes.png") {
@@ -67,7 +65,7 @@ function handleVideo(stream) {
       }
     }, false);
 
-    image.src = document.querySelector('input[name="img"]:checked').value;
+    image.src = document.querySelector('div[name="img"]:checked').value;
     var split = image.src.split("/");
     var file = split[split.length - 1];
     canvas.getContext("2d").drawImage(video, 0, 0, 640, 480, 0, 0, 640, 480);
@@ -110,7 +108,7 @@ function videoError() {
   notAvailable.style.display = "block";
 }
 
-  function boxChecked(box) {
+  function onBoxChecked(box) {
     if (cameraAvailable) {
       button.style.display = "block";
       if (box.id === "diademe.png") {
