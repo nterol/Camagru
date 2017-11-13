@@ -3,7 +3,7 @@ body {
     margin-top: 0;
     font-family: 'Montserrat', sans-serif;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 0.5 fr repeat(6, 1fr) 0.5fr;
     grid-template-rows: auto;
     grid-column-gap: 1em;
     grid-template-areas: 
@@ -36,7 +36,7 @@ body {
     grid-area: main;
 }
 
-.select {
+ .select {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
@@ -68,6 +68,10 @@ body {
 .thumbnail {
     width: 80px;
     height: 80px;
+}
+
+video {
+    grid-area: video;
 }
 
 .capture {
@@ -184,7 +188,7 @@ captureFile:hover {
     margin-bottom: 3px;
 }
 
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
     .main {
         width: 400px;
     }
@@ -241,4 +245,4 @@ captureFile:hover {
         margin-right: auto;
         margin-left: auto;
     }
-}
+} */
