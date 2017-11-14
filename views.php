@@ -15,10 +15,11 @@
 ?>
 <!DOCTYPE html>
 <html>
-<header>
+<head>
   <meta charset="UTF-8" />
   <title>Camagru</title>
-</header>
+  <link rel="stylesheet" type="text/css" href="style/views.css">
+</head>
 <body>
   <div id="views">
     <?php

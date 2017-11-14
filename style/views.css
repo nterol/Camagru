@@ -1,0 +1,15 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 6em;
+    grid-template-areas: "header header header" ". views ." ". modal ."
+}
+
+#views {
+    grid-area: views;
+}
+
+#modal {
+    grid-area: modal;
+}
