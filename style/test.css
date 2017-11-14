@@ -1,3 +1,15 @@
+.titre-forms {
+    justify-content: center;
+    margin: 0.5em auto;
+    padding: 2em;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
 .overlay {
     display: flex;
     position: fixed;
@@ -15,9 +27,10 @@
 .container {
     border: 3px solid #fff;
     justify-content: center;
-    margin-top: 10em;
+    margin-top: 5em;
     margin-left: 20em;
     margin-right: 20em;
+    margin-bottom: 5em;
     padding: 2em;
 }
 
@@ -89,4 +102,11 @@ a:hover {
 
 a:visited {
     color: gainsboro;
+}
+
+span {
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: 'Roboto', sans-serif;   
 }
