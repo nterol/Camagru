@@ -36,5 +36,8 @@ body {
     height: 40px;
     width: 100%;
     text-align: center;
-    background-color: bisque;
+    background-color: white;
+    padding-top: 1em;
+    font-family: "Montserrat", bold, sans-serif;
+
 }
