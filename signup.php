@@ -14,24 +14,23 @@ session_start();
 </head>
 
 <body>
-    <div class="main">
-        <div class="header">
+<div class="titre-forms">
+            <h1>SIGN UP !</h1>
         </div>
-        <?php include ('./parts/header.php') ?>
-        <div class="login">
-            <form method="post" action="forms/signup_check.php">
-                <label>Email</label>
-                <input id="mail" name="email" type="mail">
-                <label>Username</label>
+        <div class="container">
+        <form method="post" action="forms/signup_check.php">
+            <label>Email</label>
+            <input id="mail" name="email" type="mail">             <label>Username</label>
                 <input id="username" name="username" type="text">
                 <label>Password</label>
                 <input id="password" name="password" type="password">
                 <input name="submit" type="submit" value="Send">
                 <span>
       <?php
-      echo $_SESSION['error'];
+      if (isset($_SESSION['error'])) {
+        echo $_SESSION['error'];
       $_SESSION['error'] = null;
-      if (isset($_SESSION['signup_success'])) {
+      } else if (isset($_SESSION['signup_success'])) {
           echo "Hey welcome ! Please check your mails to verify your account";
           $_SESSION['signup_success'] = null;
       }
