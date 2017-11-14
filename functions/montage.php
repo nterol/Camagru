@@ -1,7 +1,7 @@
 <?php
 function add_montage($userId, $imgPath)
 {
-    include_once('../set/database.php');
+    include_once('../setup/database.php');
 
     try {
         $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
@@ -16,7 +16,7 @@ function add_montage($userId, $imgPath)
 
 function get_all_montage()
 {
-    include_once('../set/database.php');
+    include_once('../setup/database.php');
 
     try {
         $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
@@ -40,7 +40,7 @@ function get_all_montage()
 
 function remove_montage($uid, $img)
 {
-    include_once('../set/database.php');
+    include_once('../setup/database.php');
 
     try {
         $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
@@ -76,7 +76,7 @@ function remove_montage($uid, $img)
 
 function get_montage($start, $nb)
 {
-    include_once('../set/database.php');
+    include_once('../setup/database.php');
 
     try {
         if ($start < 0) {
@@ -112,7 +112,7 @@ function get_montage($start, $nb)
 
 // function get_other_montages($start, $nb)
 // {
-//     include_once('../set/database.php');
+//     include_once('../setup/database.php');
 //     try {
 //         if ($start < 0) {
 //             $start = 0;
