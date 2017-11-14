@@ -1,21 +1,21 @@
 body {
-    width: 100%;
-    margin: 0;
-    margin-top: 0;
     font-family: 'Montserrat', sans-serif;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 1em;
+    grid-template-areas: "header header header header header header" "welcome welcome welcome welcome welcome welcome" ". main main main side ."
 }
 
 .welcome {
-    box-sizing: border-box;
-    padding: 2em;
-    width: 100%;
+    grid-area: welcome;
+    padding: 0.2em;
     background-color: palegreen;
     border: 1px solid green;
     color: #000;
     cursor: pointer;
     z-index: 2;
+    text-align: center;
 }
 
 .closebtn {
@@ -28,22 +28,46 @@ body {
     color: deepskyblue;
 }
 
-.body {
-    margin: 8px;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    width: 400em;
+.main {
+    grid-area: main;
+    /*
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "thumbnail thumbnail thumbnail thumbnail" "diademe lunettes illuminati barbe" "video video video video";
+*/
 }
 
-.main {
-    width: 300em;
-    width: 100em;
+.thumbnail {
+    grid-area: thumbnail;
+}
+
+#diademe.png {
+    grid-area: diademe;
+}
+
+#lunettes.png {
+    grid-area: lunettes;
+}
+
+#illuminati.png {
+    grid-area: illuminati;
+}
+
+#barbe.png {
+    grid-area: barbe;
+}
+
+video {
+    grid-area: video;
+}
+
+.side {
+    grid-area: side;
 }
 
 .title {
     text-align: center;
-    background-color: bisque;
     margin-bottom: 0.375em;
 }
 
@@ -54,7 +78,7 @@ body {
 
 .thumbnail {
     width: 80px;
-    height . 80px;
+    height: 80px;
 }
 
 .capture {
@@ -89,6 +113,8 @@ captureFile:hover {
     transition-duration: 0.4s;
 }
 
+
+/*
 #diademe {
     position: absolute;
     width: 240px;
@@ -120,6 +146,7 @@ captureFile:hover {
     top: 315px;
     left: 100px;
 }
+*/
 
 .removable:hover {
     cursor: pointer;

@@ -20,44 +20,43 @@ $montage = get_all_montage();
 
         <?php if (isset($_SESSION['id'])) {
     ?>
-        <div class="body">
-            <div class="welcome" onclick="this.style.display = 'none';">
-                <span onclick="this.parentNode.style.display = 'none';" class="closebtn">&otimes;</span>
-                <p>Bienvenue sur camagru,
-                    <?php htmlspecialchars($_SESSION['username']); ?>
-                </p>
-            </div>
+        <div class="welcome" onclick="this.style.display = 'none';">
+            <span onclick="this.parentNode.style.display = 'none';" class="closebtn">&otimes;</span>
+            <p>Bienvenue sur camagru,
+                <?php echo htmlspecialchars(ucfirst($_SESSION['username'])); ?>
+            </p>
+        </div>
 
-            <div class="main">
-                <div class="select">
-                    <img class="thumbnail" src="img/diademe.png" />
-                    <input class= "box" id="diademe.png" onclick="boxChecked(this)" type="radio" name="img" value="./img/diademe.png">
-                    <img class="thumbnail" src="img/lunettes.png" />
-                    <input class="box" id="lunettes" type="radio" name="img" value="./img/lunettes.png" onclick="boxChecked(this)">
-                    <img class="thumbnail" src="img/illuminati.png" />
-                    <input class="box" id="illuminati.png" type="radio" name="img" value="./img/illuminati.png" onclick="boxChecked(this)">
-                    <img class="thumbnail" src="img/barbe.png" />
-                    <input class="box" id="barbe.png" type="radio" name="img" value="./img/barbe.png" onclick="boxChecked(this)">
-                </div>
-                <video width="100%" autoplay="true" id="webcam"></video>
-                <div id="camera-not-available">LA CAMERA N'EST PAS DISPONIBLE</div>
-                <img id="diademe" style="display:none;" src="img/diademe.png" />
-                <img id="lunettes" style="display:none;" src="img/lunettes.png" />
-                <img id="illuminati" style="display:none;" src="img/illuminati.png" />
-                <img id="barbe" style="display:none;" src="img/barbe.png" />
-                <div class="capture" id="pickImage">
-                    <img class="camera" src="img/camera.png" />
-                </div>
-                <canvas id="canvas" style="display:none;" width="640" height="480"></canvas>
-                <div class="captureFile" id="pickFile">
-                    <img class="camera" src="img/camera.png" />
-                </div>
-                <input type="file" id="takePicture" style="display:none;" accept="image/*">
+        <div class="main">
+            <div class="select">
+                <img class="thumbnail" src="img/diademe.png" />
+                <input class="box" id="diademe.png" onclick="onBoxChecked(this)" type="radio" name="img" value="./img/diademe.png">
+                <img class="thumbnail" src="img/lunettes.png" />
+                <input class="box" id="lunettes" type="radio" name="img" value="./img/lunettes.png" onclick="onBoxChecked(this)">
+                <img class="thumbnail" src="img/illuminati.png" />
+                <input class="box" id="illuminati.png" type="radio" name="img" value="./img/illuminati.png" onclick="onBoxChecked(this)">
+                <img class="thumbnail" src="img/barbe.png" />
+                <input class="box" id="barbe.png" type="radio" name="img" value="./img/barbe.png" onclick="onBoxChecked(this)">
             </div>
-            <div class="side">
-                <div class="title">Montages</div>
-                <div id="miniatures">
-                    <?php
+            <video width="100%" autoplay="true" id="webcam"></video>
+            <div id="camera-not-available">LA CAMERA N'EST PAS DISPONIBLE</div>
+            <img id="diademe" style="display:none;" src="img/diademe.png" />
+            <img id="lunettes" style="display:none;" src="img/lunettes.png" />
+            <img id="illuminati" style="display:none;" src="img/illuminati.png" />
+            <img id="barbe" style="display:none;" src="img/barbe.png" />
+            <div class="capture" id="pickImage">
+                <img class="camera" src="img/camera.png" />
+            </div>
+            <canvas id="canvas" style="display:none;" width="640" height="480"></canvas>
+            <div class="captureFile" id="pickFile">
+                <img class="camera" src="img/camera.png" />
+            </div>
+            <input type="file" id="takePicture" style="display:none;" accept="image/*">
+        </div>
+        <div class="side">
+            <div class="title">Montages</div>
+            <div id="miniatures">
+                <?php
     $gallery="";
     if ($montages != null) {
         for ($i = 0; $montages[$i]; $i++) {
@@ -69,7 +68,6 @@ $montage = get_all_montage();
         }
         echo $gallery;
     } ?>
-                </div>
             </div>
         </div>
         <?php
@@ -89,12 +87,13 @@ $montage = get_all_montage();
                         <a href="signup.php">Create account</a>
                         <a href="forgot.php">Mot de passe oublié ?</a>
                         <span>
-                    <?php
-                    if ($_SESSION['error']) {
-                        echo $_SESSION['error'];
-                    }
-        $_SESSION['error'] = null; ?>
-                  </span>
+                        <?php
+    if ($_SESSION['error']) {
+        echo $_SESSION['error'];
+        $_SESSION['error'] = null;
+    }
+                            ?>
+                        </span>
                     </form>
                 </div>
             </div>
