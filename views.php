@@ -19,8 +19,10 @@
   <meta charset="UTF-8" />
   <title>Camagru</title>
   <link rel="stylesheet" type="text/css" href="style/views.css">
+  <link rel="stylesheet" type="text/css" href="style/parts.css">
 </head>
 <body>
+<?php include "parts/header.php" ?>
   <div id="views">
     <?php
     if (isset($montages['error'])) {
@@ -65,7 +67,7 @@
         <?php if(!$_SESSION['id']) echo "disabled"?> id="comment" placeholder="Laisse un gentil com..." rows="10" cols="50" maxlength="255"></textarea>
         <div 
         id="send-comment" class="button-send <?php
-        if (!$_SESSION['id']) echo "disabled"?>"">Send</div>
+        if (!$_SESSION['id']) echo "disabled"?>">Send</div>
       </div>
     </div>
   </div>
