@@ -18,24 +18,25 @@ session_start();
             <h1>SIGN UP !</h1>
         </div>
         <div class="container">
-        <form method="post" action="forms/signup_check.php">
+            <form method="post" action="forms/signup_check.php">
             <label>Email</label>
-            <input id="mail" name="email" type="mail">             <label>Username</label>
-                <input id="username" name="username" type="text">
-                <label>Password</label>
-                <input id="password" name="password" type="password">
-                <input name="submit" type="submit" value="Send">
-                <span>
-      <?php
-      if (isset($_SESSION['error'])) {
-        echo $_SESSION['error'];
-      $_SESSION['error'] = null;
-      } else if (isset($_SESSION['signup_success'])) {
-          echo "Hey welcome ! Please check your mails to verify your account";
-          $_SESSION['signup_success'] = null;
-      }
-      ?>
-    </span>
+            <input id="mail" name="email" type="mail">
+            <label>Username</label>
+            <input id="username" name="username" type="text">
+            <label>Password</label>
+            <input id="password" name="password" type="password">
+            <input name="submit" type="submit" value="Send">
+            <span>
+                <?php
+                if (isset($_SESSION['error'])) {
+                    echo $_SESSION['error'];
+                    $_SESSION['error'] = null;
+                } else if (isset($_SESSION['signup_success'])) {
+                    echo "Hey welcome ! Please check your mails to verify your account";
+                    $_SESSION['signup_success'] = null;
+                }
+                ?>
+                </span>
             </form>
         </div>
         <?php include('./parts/footer.php') ?>
