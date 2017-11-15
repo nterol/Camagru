@@ -48,7 +48,7 @@ function handleVideo(stream) {
     cameraAvailable = true;
     video.style.display = "block";
     notAvailable.style.display = "none";
-    button.onclick = function () {
+    button.onclick = () => {
         var image = new Image();
         canvas.style.display = "none";
         pickFile.style.display = "none";
@@ -65,7 +65,7 @@ function handleVideo(stream) {
             }
         }, false);
 
-        image.src = document.querySelector('div[name="img"]:checked').value;
+        image.src = document.querySelector('input[name="img"]:checked').value;
         var split = image.src.split("/");
         var file = split[split.length - 1];
         canvas.getContext("2d").drawImage(video, 0, 0, 640, 480, 0, 0, 640, 480);

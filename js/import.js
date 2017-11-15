@@ -3,17 +3,17 @@ var fileInput = document.getElementById("takePicture")
 var pickfile = document.getElementById("pickFile")
 var miniatures = document.getElementById("miniatures")
 
-fileInput.onchange = function (event) {
-    var file = this.file[0]
+fileInput.onchange = event => {
+    var file = this.files[0]
     var image = new Image()
     var img = new Image()
-    var img64 = null
+    var data64Img = null
 
     canvas.style.display = "block"
 
-    image.addEventListener("load", function (e) {
+    image.addEventListener("load", e => {
         canvas.getContext("2d").drawImage(image, 0, 0, image.width, image.height, 0, 0, 640, 480)
-        var img64 = canvas.toDataURL(image.type)
+        var data64Img = canvas.toDataURL(image.type)
         window.URL.revokeObjectURL(file)
 
         img.src = document.querySelector('input[name="img:checked"]').value
@@ -36,7 +36,7 @@ fileInput.onchange = function (event) {
             default:
         }
         pickFile.onclick = (() => {
-            sendMontage(img64, file)
+            sendMontage(data64Img, file)
         })
     }, false)
 
@@ -44,7 +44,7 @@ fileInput.onchange = function (event) {
     pickFile.style.display = "block"
 }
 
-function sendMontage(img64, filterImg) {
+function sendMontage(data64Img, filterImg) {
     var xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText != null && xhr.responseText != "") {
@@ -59,7 +59,7 @@ function sendMontage(img64, filterImg) {
                 var xhr = new XMLHttpRequest()
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText == "OK") {
-                        miniatures.removeChild(event.srcElement ||  event.target)
+                        miniatures.removeChild(event.srcElement || event.target)
                     }
                 }
                 xhr.open("POST", "./forms/removemontage.php", true)
@@ -71,5 +71,5 @@ function sendMontage(img64, filterImg) {
     }
     xhr.open("POST", "./forms/removemontage.php", true)
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
-    xhr.send("img=" + "../img/" + filterImg + "&f=" + img64)
+    xhr.send("img=" + "../img/" + filterImg + "&f=" + data64Img)
 }
