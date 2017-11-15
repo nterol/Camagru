@@ -16,7 +16,7 @@ $montage = get_all_montage();
     </head>
 
     <body>
-        <?php //include('./parts/header.php') ?>
+        <?php include('./parts/header.php') ?>
 
         <?php if (isset($_SESSION['id'])) {
     ?>

@@ -8,6 +8,9 @@ body {
 }
 
 .welcome {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    border-radius: 5px;
     grid-area: welcome;
     padding: 0.2em;
     background-color: palegreen;
@@ -25,7 +28,7 @@ body {
 }
 
 .closebtn:hover {
-    color: deepskyblue;
+    color: rgb(251, 255, 0);
 }
 
 .main {

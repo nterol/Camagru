@@ -17,6 +17,8 @@ include_once './functions/get_verify.php';
     <strong>
       C'est bon tu es vérifié !
     </strong>
+    <br/>
+    <a href="./gallery.php">Connexion</a>
     <?php
   } else {
       ?>
