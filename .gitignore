@@ -5,3 +5,7 @@
 # JUNK #
 ########
 .DS_Store
+
+# special files #
+#################
+./montage/
