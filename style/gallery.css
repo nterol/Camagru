@@ -1,10 +1,10 @@
 body {
     font-family: 'Montserrat', sans-serif;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 0.5fr repeat(3, 1fr) 2fr 0.5fr;
     grid-template-rows: auto;
     grid-gap: 1em;
-    grid-template-areas: "header header header header header header" "welcome welcome welcome welcome welcome welcome" ". main main main side ."
+    grid-template-areas: "header header header header header header" ". welcome welcome welcome welcome ." ". main main main side ."
 }
 
 .welcome {
@@ -13,8 +13,8 @@ body {
     border-radius: 5px;
     grid-area: welcome;
     padding: 0.2em;
-    background-color: palegreen;
-    border: 1px solid green;
+    background-color: white;
+    border: 1px solid rgba(184, 213, 255, 0.856);
     color: #000;
     cursor: pointer;
     z-index: 2;
@@ -22,47 +22,19 @@ body {
 }
 
 .closebtn {
+    padding: 0.2em 0.2em 0 0;
     float: right;
     font-size: 30px;
     font-weight: bold;
+    color: black;
 }
 
 .closebtn:hover {
-    color: rgb(251, 255, 0);
+    color: grey;
 }
 
 .main {
     grid-area: main;
-    /*
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
-    grid-template-areas: "thumbnail thumbnail thumbnail thumbnail" "diademe lunettes illuminati barbe" "video video video video";
-*/
-}
-
-.thumbnail {
-    grid-area: thumbnail;
-}
-
-#diademe.png {
-    grid-area: diademe;
-}
-
-#lunettes.png {
-    grid-area: lunettes;
-}
-
-#illuminati.png {
-    grid-area: illuminati;
-}
-
-#barbe.png {
-    grid-area: barbe;
-}
-
-video {
-    grid-area: video;
 }
 
 .side {
@@ -76,12 +48,62 @@ video {
 
 .select {
     width: 100%;
-    height: 115px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 0.5fr;
+    grid-template-areas: "diademe lunettes illuminati barbe"
+    "diademebox lunettesbox illuminatibox barbebox"; 
 }
 
 .thumbnail {
     width: 80px;
     height: 80px;
+}
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 4em;
+    height: 2em;
+    border: 2px solid #999;
+    transition: 0.2s all linear;
+    outline: none;
+    position: relative;
+    border-radius: 20%/50% ;
+}
+
+input:checked {
+    border: 6px solid black;
+    background-color: white;
+}
+
+.diademe {
+    grid-area: diademe;
+}
+.lunettes {
+    grid-area: lunettes;
+}
+.illuminati {
+    grid-area: illuminati;
+}
+.barbe {
+    grid-area: barbe;
+}
+#diademe.png {
+    grid-area: diademebox;
+}
+#lunettes.png {
+    grid-area: lunettesbox;
+}
+#illuminati.png {
+    grid-area: illuminatibox;
+}
+#barbe.png {
+    grid-area: barbebox;
 }
 
 .capture {
@@ -116,40 +138,38 @@ captureFile:hover {
     transition-duration: 0.4s;
 }
 
-
-/*
 #diademe {
     position: absolute;
-    width: 240px;
-    height: 180px;
-    top: 115px;
-    left: 180px;
+    width: 6em;
+    height: 6em;
+    top: 17em;
+    left: 24em;
 }
 
 #lunettes {
     position: absolute;
-    width: 240px;
-    height: 180px;
-    top: 315px;
-    left: 100px;
+    width: 8em;
+    height: 8em;
+    top: 17em;
+    left: 15em;
 }
 
 #illuminati {
     position: absolute;
-    width: 640px;
-    height: 480px;
-    top: 115px;
-    left: 0;
+    width: 8em;
+    height: 8em;
+    top: 17em;
+    left: 20em;
 }
 
 #barbe {
     position: absolute;
-    width: 640px;
-    height: 480px;
-    top: 315px;
-    left: 100px;
+    width: 10em;
+    height: 10em;
+    top: 24em;
+    left: 24em;
 }
-*/
+
 
 .removable:hover {
     cursor: pointer;
@@ -191,6 +211,7 @@ captureFile:hover {
     margin-bottom: 3px;
 }
 
+/*
 @media screen and (max-width: 900px) {
     .main {
         width: 400px;
@@ -249,3 +270,4 @@ captureFile:hover {
         margin-left: auto;
     }
 }
+/*

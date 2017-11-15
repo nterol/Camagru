@@ -29,13 +29,13 @@ $montage = get_all_montage();
 
         <div class="main">
             <div class="select">
-                <img class="thumbnail" src="img/diademe.png" />
+                <img class="diademe thumbnail" src="img/diademe.png" />
                 <input class="box" id="diademe.png" onclick="onBoxChecked(this)" type="radio" name="img" value="./img/diademe.png">
-                <img class="thumbnail" src="img/lunettes.png" />
-                <input class="box" id="lunettes" type="radio" name="img" value="./img/lunettes.png" onclick="onBoxChecked(this)">
-                <img class="thumbnail" src="img/illuminati.png" />
+                <img class="lunettes thumbnail" src="img/lunettes.png" />
+                <input class="box" id="lunettes.png" type="radio" name="img" value="./img/lunettes.png" onclick="onBoxChecked(this)">
+                <img class="illuminati thumbnail" src="img/illuminati.png" />
                 <input class="box" id="illuminati.png" type="radio" name="img" value="./img/illuminati.png" onclick="onBoxChecked(this)">
-                <img class="thumbnail" src="img/barbe.png" />
+                <img class="barbe thumbnail" src="img/barbe.png" />
                 <input class="box" id="barbe.png" type="radio" name="img" value="./img/barbe.png" onclick="onBoxChecked(this)">
             </div>
             <video width="100%" autoplay="true" id="webcam"></video>
