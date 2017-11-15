@@ -72,19 +72,19 @@ function handleVideo(stream) {
         var img = canvas.toDataURL("image/png");
 
         var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = () => {
             if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText != null && xhr.responseText == "") {
                 var newImg = document.createElement("IMG");
                 newImg.className = "icon removable";
                 newImg.src = "montage/" + xhr.responseText;
 
-                newImg.onclick = function (event) {
+                newImg.onclick = event => {
                     var pathToImg = event.srcElement.src;
                     var srcTab = pathToImg.split('/');
                     var src = srcTab[srcTab.length - 1];
 
                     var xhr = new XMLHttpRequest();
-                    xhr.onreadystatechange = function () {
+                    xhr.onreadystatechange = () => {
                         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText == "OK") {
                             miniatures.removeChild(event.srcElement);
                         }
