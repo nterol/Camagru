@@ -1,6 +1,6 @@
 var video = document.querySelector("#webcam");
 var canvas = document.getElementById('canvas');
-var button = document.getElementById('pickImage');
+var button = document.getElementById('capture-button');
 var miniatures = document.getElementById('miniatures');
 var inputFile = document.getElementById('takePicture');
 var pickFile = document.getElementById('pickFile');
@@ -71,14 +71,14 @@ function handleVideo(stream) {
         canvas.getContext("2d").drawImage(video, 0, 0, 640, 480, 0, 0, 640, 480);
         var img = canvas.toDataURL("image/png");
 
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText != null && xhr.responseText == "") {
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if (req.readyState == 4 && (req.status == 200 || req.status == 0) && req.responseText != null && req.responseText == "") {
                 var newImg = document.createElement("IMG");
                 newImg.className = "icon removable";
-                newImg.src = "montage/" + xhr.responseText;
+                newImg.src = "montage/" + req.responseText;
 
-                newImg.onclick = event => {
+                newImg.onclick = function(event) {
                     var pathToImg = event.srcElement.src;
                     var srcTab = pathToImg.split('/');
                     var src = srcTab[srcTab.length - 1];
@@ -96,9 +96,9 @@ function handleVideo(stream) {
                 miniatures.appendChild(newImg);
             }
         };
-        xhr.open("POST", "forms/montage.php", true);
-        xhr.setRequestHeader("Content-type", "applications/x-www-form-urlencoded");
-        xhr.send("img=" + "../img/" + file + "&f=" + img);
+        req.open("POST", "./forms/montage.php", true);
+        req.setRequestHeader("Content-type", "applications/x-www-form-urlencoded");
+        req.send("img=" + "../img/" + file + "&fter=" + img);
     };
 }
 

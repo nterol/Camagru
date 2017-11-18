@@ -42,7 +42,7 @@ function get_all_montage()
 
 function remove_montage($uid, $img)
 {
-    include_once('./setup/database.php');
+    include_once('../setup/database.php');
 
     try {
         $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);

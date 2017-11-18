@@ -2,13 +2,13 @@
 session_start();
 
 include_once("../functions/montage.php");
-include("../functions/likes.php");
+include("../functions/like.php");
 
 $id = $_POST['id'];
 $nb = $_POST['nb'];
 
 if ($id == null || $id == "" || $nb == null || $nb == "") {
-    echo "OK";
+    echo "KO";
     return ;
 }
 
@@ -25,7 +25,7 @@ for ($i = 0; $i < count($montages); $i++) {
     $montages[$i]['comments'] = null;
 }
 if (count($montages) <= 0) {
-  echo "KO";
+  echo "OK";
   return ;
 }
 print_r(json_encode($montages));

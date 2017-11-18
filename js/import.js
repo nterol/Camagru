@@ -4,7 +4,7 @@ var pickfile = document.getElementById("pickFile")
 var miniatures = document.getElementById("miniatures")
 
 fileInput.onchange = event => {
-    var file = this.files[0]
+    var file = this.files[0];
     var image = new Image()
     var img = new Image()
     var data64Img = null

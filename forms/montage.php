@@ -6,7 +6,7 @@ include_once '../functions/montage.php';
 $montageDir = "../montage/";
 
 $img = $_POST['img'];
-$filter = $_POST['f'];
+$filter = $_POST['fter'];
 $id = $_SESSION['id'];
 
 $filter = str_replace('data:image/png;base64,','', $filter);
@@ -36,7 +36,7 @@ if (strcmp($img, "../img/diademe.png") == 0 || strcmp($img, "../img/illuminati.p
 else
   imagecopyresized($copy, $src, 0, 0, 0, 0, 640, 480, 1024, 768);
 
-$destination = imagecreatefrompng($montageDir. $iuid. ".png");
+$destination = imagecreatefrompng($montageDir . $iuid. ".png");
 
 $x_src = imagesx($copy);
 $y_src = imagesy($copy);
