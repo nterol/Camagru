@@ -72,13 +72,13 @@ function handleVideo(stream) {
         var img = canvas.toDataURL("image/png");
 
         var req = new XMLHttpRequest();
-        req.onreadystatechange = function() {
+        req.onreadystatechange = function () {
             if (req.readyState == 4 && (req.status == 200 || req.status == 0) && req.responseText != null && req.responseText == "") {
                 var newImg = document.createElement("IMG");
                 newImg.className = "icon removable";
                 newImg.src = "montage/" + req.responseText;
 
-                newImg.onclick = function(event) {
+                newImg.onclick = function (event) {
                     var pathToImg = event.srcElement.src;
                     var srcTab = pathToImg.split('/');
                     var src = srcTab[srcTab.length - 1];
@@ -98,7 +98,7 @@ function handleVideo(stream) {
         };
         req.open("POST", "./forms/montage.php", true);
         req.setRequestHeader("Content-type", "applications/x-www-form-urlencoded");
-        req.send("img=" + "../img/" + file + "&fter=" + img);
+        req.send("img=" + "../img/" + file + "&f=" + img);
     };
 }
 
@@ -148,13 +148,13 @@ function onBoxChecked(box) {
             var file = split[split.length - 1];
 
             if (file === "diademe.png")
-                canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 100, 300, 240, 180);
+                canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 206, 130, 240, 180);
             else if (file === "lunettes.png")
-                canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 100, 200, 240, 180);
+                canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 240, 250, 240, 180);
             else if (file === "illuminati.png")
-                canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 100, 250, 540, 540);
+                canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 206, 150, 240, 180);
             else if (file === "barbe.png")
-                canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 100, 300, 512, 512);
+                canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 140, 296, 330, 250);
             pickFile.onclick = () => sendMontage(data64img, file);
         }, false);
         image.src = window.URL.createObjectURL(inputFile.files[0]);

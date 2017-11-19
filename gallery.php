@@ -26,6 +26,7 @@ $montage = get_all_montage();
             </p>
         </div>
         <div class="body">
+
             <div class="main">
                 <div class="select">
                     <img class="diademe thumbnail" src="img/diademe.png" />
