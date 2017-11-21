@@ -55,13 +55,13 @@ function handleVideo(stream) {
 
         image.addEventListener("load", () => {
             if (file === "diademe.png") {
-                canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 0, 0, 640, 480);
+                canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 180, 0, 240, 180);
             } else if (file === "lunettes.png") {
-                canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 0, 0, 640, 480);
+                canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 240, 0, 240, 180);
             } else if (file === "illuminati.png") {
-                canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 0, 0, 640, 480);
+                canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 206, 0, 240, 180);
             } else {
-                canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 0, 0, 640, 480);
+                canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 140, 200, 240, 180);
             }
         }, false);
 
@@ -148,13 +148,13 @@ function onBoxChecked(box) {
             var file = split[split.length - 1];
 
             if (file === "diademe.png")
-                canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 206, 130, 240, 180);
+                canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 180, 0, 240, 180);
             else if (file === "lunettes.png")
-                canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 240, 250, 240, 180);
+                canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 240, 0, 240, 180);
             else if (file === "illuminati.png")
-                canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 206, 150, 240, 180);
+                canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 206, 0, 240, 180);
             else if (file === "barbe.png")
-                canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 140, 296, 330, 250);
+                canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 140, 200, 330, 250);
             pickFile.onclick = () => sendMontage(data64img, file);
         }, false);
         image.src = window.URL.createObjectURL(inputFile.files[0]);
