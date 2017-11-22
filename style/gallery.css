@@ -249,6 +249,13 @@ input:checked {
     background-color: rgba(128, 154, 188, 0.5);
 }
 
+video {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
 .camera {
     width: 50px;
     height: 50px;
@@ -389,14 +396,14 @@ input:checked {
         display: inline;
         width: 450px;
     }
-    
+
     .side {
         width: 100%;
         max-width: 400px;
         margin-right: auto;
         margin-left: auto;
     }
-    
+
     .main {
         margin-left: auto;
         margin-right: auto;

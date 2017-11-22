@@ -47,7 +47,7 @@ $montages = get_all_montage();
                 <div class="capture" id="capture-button">
                     <img class="camera" src="img/camera.png" />
                 </div>
-                <canvas id="canvas" width="640" height="480"></canvas>
+                <canvas id="canvas" style="display:none;" width="640" height="480"></canvas>
                 <div class="captureFile" id="pickFile">
                     <img class="camera" src="img/camera.png" />
                 </div>
@@ -64,7 +64,7 @@ $montages = get_all_montage();
             if ($i['userid'] === $_SESSION['id']) {
                 $class .= "removable";
             }
-            $gallery .= "<img class=\"" .$class . "\" src=\"./montage/" . $i['img'] . "\"data-userid=\"" .$i['userid']. "\"/>";
+            $gallery .= "<img class=\"" .$class . "\" src=\"./montage/" . $i['img'] . "\"data-userid=\"" . $i['userid']. "\"/>";
         }
         echo $gallery;
     } ?>
@@ -78,6 +78,14 @@ $montages = get_all_montage();
                 <div class="title-forms">
                     <h1>Connexion</h1>
                 </div>
+
+
+
+
+
+
+
+
                 <div class="container">
                     <form method="post" action="forms/login.php">
                         <label> email : </label>

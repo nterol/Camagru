@@ -1,5 +1,7 @@
 #!/usr/bin/php
 <?php
+session_start();
+$_SESSION['id'] = null;
 include 'database.php';
 
 //CREATE DATABASE
@@ -56,7 +58,6 @@ try {
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `userid` INT(11) NOT NULL,
     `galleryid`  INT(11) NOT NULL,
-    `type` VARCHAR(1) NOT NULL,
     FOREIGN KEY (userid) REFERENCES users(id),
     FOREIGN KEY (galleryid) REFERENCES gallery(id)
   )";

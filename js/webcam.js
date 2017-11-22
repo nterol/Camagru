@@ -55,9 +55,9 @@ function handleVideo(stream) {
 
         // image.addEventListener("load", () => {
         //     if (file === "diademe.png") {
-        //         canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 180, 0, 240, 180);
+        //         canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 206, 30, 500, 250);
         //     } else if (file === "lunettes.png") {
-        //         canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 240, 0, 240, 180);
+        //         canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 240, 0, 500, 250);
         //     } else if (file === "illuminati.png") {
         //         canvas.getContext('2d').drawImage(image, 0, 0, 1024, 768, 206, 0, 240, 180);
         //     } else {
@@ -70,50 +70,35 @@ function handleVideo(stream) {
         var file = split[split.length - 1];
         canvas.getContext("2d").drawImage(video, 0, 0, 640, 480, 0, 0, 640, 480);
         var img = canvas.toDataURL("image/png");
-        // console.log(img);
 
-        var xhr = new XMLHttpRequest();
-        
-            xhr.onreadystatechange = function () {
-              var DONE = 4; // readyState 4 means the request is done.
-              var OK = 200; // status 200 is a successful return.
-              if (xhr.readyState === DONE) {
-                if (xhr.status !== OK){
-                  console.log('Error: ' + xhr.status); // An error occurred during the request.
-                }
-        // var req = new XMLHttpRequest();
-        // req.onreadystatechange = function () {
-        //     if (req.readyState == 4 && (req.status == 200 || req.status == 0) && req.responseText != null && req.responseText == "") {
-                // var newImg = document.createElement("IMG");
-                // newImg.className = "icon removable";
-                // newImg.src = "montage/" + req.responseText;
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function () {
+            // if (req.readyState == 4 && (req.status == 200 || req.status == 0) && req.responseText != null && req.responseText == "") {
+            //     var newImg = document.createElement("IMG");
+            //     newImg.className = "icon removable";
+            //     newImg.src = "montage/" + req.responseText;
 
-                // newImg.onclick = function (event) {
-                //     var pathToImg = event.srcElement.src;
-                //     var srcTab = pathToImg.split('/');
-                //     var src = srcTab[srcTab.length - 1];
+            //     newImg.onclick = function (event) {
+            //         var pathToImg = event.srcElement.src;
+            //         var srcTab = pathToImg.split('/');
+            //         var src = srcTab[srcTab.length - 1];
 
-                //     var xhr = new XMLHttpRequest();
-                //     xhr.onreadystatechange = () => {
-                //         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText == "OK") {
-                //             miniatures.removeChild(event.srcElement);
-                //         }
-                //     };
-                //     xhr.open("POST", "./forms/removemontage.php", true);
-                //     xhr.setRequestHeader("Content-type", "applications/x-www-form-urlencoded");
-                //     xhr.send("src=" + src);
-                // }
-                // miniatures.appendChild(newImg);
-            }
+            //         var xhr = new XMLHttpRequest();
+            //         xhr.onreadystatechange = () => {
+            //             if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText == "OK") {
+            //                 miniatures.removeChild(event.srcElement);
+            //             }
+            //         };
+            //         xhr.open("POST", "./forms/removemontage.php", true);
+            //         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            //         xhr.send("src=" + src);
+            //     }
+            //     miniatures.appendChild(newImg);
+            // }
         };
-        // req.open("POST", "./forms/montage.php", true);
-        // req.setRequestHeader("Content-type", "applications/x-www-form-urlencoded");
-        // req.send("img=" + "../img/" + file + "&f=" + img);
-
-
-        xhr.open("POST", './forms/montage.php', true);
-        xhr.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
-        xhr.send(encodeURI("img=" + "../img/" + file) + encodeURI("&f=" + img));
+        req.open("POST", "./forms/montage.php", true);
+        req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        req.send(encodeURI("img=" + "../img/" + file) + encodeURI("&f=" + img));
     };
 }
 
@@ -149,16 +134,13 @@ function onBoxChecked(box) {
         }
     }
     inputFile.style.display = "block";
-    console.log(inputFile.files.length);
     if (inputFile.files.length) {
         var image = new Image();
         var img = new Image();
-
         image.addEventListener("load", () => {
             canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
             canvas.getContext("2d").drawImage(image, 0, 0, image.width, image.height, 0, 0, 640, 480);
             var data64img = canvas.toDataURL(image.type);
-            console.log(data64img);
             window.URL.revokeObjectURL(file);
 
             img.src = document.querySelector('input[name="img"]:checked').value;
@@ -174,67 +156,38 @@ function onBoxChecked(box) {
             // else if (file === "barbe.png")
             //     canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 140, 200, 330, 250);
             pickFile.onclick = () => sendMontage(data64img, file);
-
         }, false);
         image.src = window.URL.createObjectURL(inputFile.files[0]);
     }
 }
 
 function sendMontage(imgData64, filterImg) {
-    console.log('test');
-
-
-    // var xhr = new XMLHttpRequest();
-    // xhr.onreadystatechange = function () {
-    //     if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText != null || xhr.responseText != "") {
-    //         var newImg = document.createElement("IMG");
-    //         newImg.className = "icon removable";
-    //         newImg.src = "montage/" + xhr.responseText;
-    //         newImg.onclick = function (event) {
-    //             var pathToImg = event.srcElement.src;
-    //             var srcTab = pathToImg.split('/');
-    //             var src = srcTab[srcTab.length - 1];
-
-    //             var xhr = new XMLHttpRequest();
-    //             xhr.onreadystatechange = function () {
-    //                 if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText == "OK") {
-    //                     miniatures.removeChild(event.srcElement);
-    //                 }
-    //             };
-    //             xhr.open("POST", './forms/removemontage.php', true);
-    //             xhr.setRequestHeader('Content-type', "applications/x-www-form-urlencoded");
-    //             xhr.send("src=" + src);
-    //         }
-    //         miniatures.appendChild(newImg);
-    //     }
-    // };
-    // xhr.open("POST", './forms/montage.php', true);
-    // xhr.setRequestHeader('Content-type', "applications/x-www-form-urlencoded");
-    // xhr.send("img=" + "../img/" + filterImg + "&f=" + imgData64);
-
-
     var xhr = new XMLHttpRequest();
-
     xhr.onreadystatechange = function () {
-        var DONE = 4; // readyState 4 means the request is done.
-        var OK = 200; // status 200 is a successful return.
-        if (xhr.readyState === DONE) {
-        if (xhr.status === OK) {
-            console.log('test');
-            // var script = document.createElement("script");
-            // var node = document.createTextNode(xhr.responseText);
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText != null || xhr.responseText != "") {
+            var newImg = document.createElement("IMG");
+            console.log(xhr.responseText)
+            newImg.className = "icon removable";
+            newImg.src = "montage/" + xhr.responseText;
+            newImg.onclick = function (event) {
+                var pathToImg = event.srcElement.src;
+                var srcTab = pathToImg.split('/');
+                var src = srcTab[srcTab.length - 1];
 
-            // script.setAttribute("type", "text/javascript");
-            // // script.setAttribute("src", "functions/update_picture.js");
-            // script.appendChild(node);
-            // document.body.appendChild(script); // 'This is the returned text.'
-        } 
-        else {
-            console.log('Error: ' + xhr.status); // An error occurred during the request.
-        }
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText == "OK") {
+                        miniatures.removeChild(event.srcElement);
+                    }
+                };
+                xhr.open("POST", './forms/removemontage.php', true);
+                xhr.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
+                xhr.send("src=" + src);
+            }
+            miniatures.appendChild(newImg);
         }
     };
     xhr.open("POST", './forms/montage.php', true);
     xhr.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
-    xhr.send(encodeURI("img=" + "../img/" + filterImg) + encodeURI("&f=" + imgData64));
+    xhr.send("img=" + "../img/" + filterImg + "&f=" + imgData64);
 }

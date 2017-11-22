@@ -1,7 +1,6 @@
 <?php
-error_reporting(E_ALL);
 
-function add_montage($userId, $imgPath)
+function put_montage($userId, $imgPath)
 {
     include_once('../setup/database.php');
 

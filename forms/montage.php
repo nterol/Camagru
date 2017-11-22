@@ -5,13 +5,9 @@ include_once '../functions/montage.php';
 
 $montageDir = "../montage/";
 
-print_r($_POST);
-
 $img = $_POST['img'];
 $filter = $_POST['f'];
 $id = $_SESSION['id'];
-
-echo $_POST['img'];
 
 $filter = str_replace('data:image/png;base64,', '', $filter);
 $filter = str_replace(' ', '+', $filter);
@@ -37,10 +33,10 @@ imagesavealpha($copy, true);
 $src = imagecreatefrompng($img);
 
 if (strcmp($img, "../img/lunettes.png") == 0)
-  imagecopyresized($copy, $src, 0, 0, 0, 0, 195, 175, 1024, 768);
+  imagecopyresized($copy, $src, 0, 0, 0, 0, 662, 704, 1024, 768);
 else if (strcmp($img, "../img/barbe.png") == 0)
-    imagecopyresized($copy, $src, 0, 0, 0, 0, 330, 250, 1024, 768);
-else imagecopyresized($copy, $src, 0, 0, 0, 0, 240, 180, 1024, 768);
+    imagecopyresized($copy, $src, 0, 0, 0, 0, 662, 704, 1024, 768);
+else imagecopyresized($copy, $src, 0, 0, 0, 0, 662, 704, 1024, 768);
 
 $destination = imagecreatefrompng($montageDir . $iuid . ".png");
 
@@ -48,6 +44,8 @@ $x_src = imagesx($copy);
 $y_src = imagesy($copy);
 $x_dest = imagesx($destination);
 $y_dest = imagesy($destination);
+
+imageflip($destination, IMG_FLIP_HORIZONTAL);
 
 if (strcmp($img, "../img/lunettes.png") == 0)
 {
@@ -69,7 +67,7 @@ imagecopymerge_alpha($destination, $copy, $dest_x, $dest_y, 0, 0, $x_src, $y_src
 $success = imagepng($destination, $montageDir.$iuid.".png");
 
 if ($success) {
-  if (($val = add_montage($id, $iuid.".png")) === 0)
+  if (($val = put_montage($id, $iuid . ".png")) === 0)
     echo ($iuid.'.png');
    else echo $val;
 }
