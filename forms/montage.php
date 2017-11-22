@@ -5,9 +5,13 @@ include_once '../functions/montage.php';
 
 $montageDir = "../montage/";
 
+print_r($_POST);
+
 $img = $_POST['img'];
 $filter = $_POST['f'];
 $id = $_SESSION['id'];
+
+echo $_POST['img'];
 
 $filter = str_replace('data:image/png;base64,', '', $filter);
 $filter = str_replace(' ', '+', $filter);

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once("./functions/montage.php");
-$montage = get_all_montage();
+$montages = get_all_montage();
 ?>
 
     <!DOCTYPE html>
@@ -47,7 +47,7 @@ $montage = get_all_montage();
                 <div class="capture" id="capture-button">
                     <img class="camera" src="img/camera.png" />
                 </div>
-                <canvas id="canvas" style="display:none;" width="640" height="480"></canvas>
+                <canvas id="canvas" width="640" height="480"></canvas>
                 <div class="captureFile" id="pickFile">
                     <img class="camera" src="img/camera.png" />
                 </div>
@@ -59,12 +59,12 @@ $montage = get_all_montage();
                     <?php
     $gallery="";
     if ($montages != null) {
-        for ($i = 0; $montages[$i]; $i++) {
+        foreach($montages as $i) {
             $class = "icon";
-            if ($montages[$i]['userid'] === $_SESSION['id']) {
+            if ($i['userid'] === $_SESSION['id']) {
                 $class .= "removable";
             }
-            $gallery .= "<img class=\"" .$class . "\" src=\"./montage/" . $montages[$i]['img'] . "\"data-userid=\"" .$montages[$i]['userid']. "\"/>";
+            $gallery .= "<img class=\"" .$class . "\" src=\"./montage/" . $i['img'] . "\"data-userid=\"" .$i['userid']. "\"/>";
         }
         echo $gallery;
     } ?>

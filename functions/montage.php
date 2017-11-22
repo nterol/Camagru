@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 
 function add_montage($userId, $imgPath)
 {
-    include_once('./setup/database.php');
+    include_once('../setup/database.php');
 
     try {
         $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
