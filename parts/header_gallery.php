@@ -19,9 +19,9 @@
         <?php
     if (isset($_SESSION['id'])) {
     ?>
-            <div class="button" onclick="location.href='views.php'">
+            <div class="button" onclick="location.href='museum.php'">
                 <span>
-            Views
+            Gallery
         </span>
             </div>
             <?php } ?>

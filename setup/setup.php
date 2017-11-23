@@ -1,8 +1,10 @@
 #!/usr/bin/php
 <?php
 session_start();
-$_SESSION['id'] = null;
 include 'database.php';
+
+if ($_SESSION['id'] != null)
+    $_SESSION['id'] = null;
 
 //CREATE DATABASE
 try {
@@ -10,7 +12,7 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "CREATE DATABASE `".$DB_NAME."`";
     $db->exec($sql);
-    echo "ok, ça marche la db est créee\n";
+    echo "DB Camagru successfuly created\n";
 } catch (PDOException $e) {
     echo "Could not generate database sorry\n".$e->getMessage()."\nAborting process\n";
     exit(-1);
@@ -47,7 +49,7 @@ try {
     $db->exec($sql);
     echo "Table gallery was created successfully\n";
 } catch (PDOException $e) {
-    echo "déso y a une couille dans le potage\n".$e->getMessage()."\nAborting Process\n";
+    echo "Something went wrong while creating gallery : ".$e->getMessage()."\nAborting Process\n";
 }
 
 //Creation de la table Like
@@ -64,7 +66,7 @@ try {
     $db->exec($sql);
     echo "Table likes created successfully\n";
 } catch (PDOException $e) {
-    echo "Error while creating table\n".$e->getMessage()."\nAborting Process\n";
+    echo "Something went wrong while creating Like".$e->getMessage()."\nAborting Process\n";
 }
 
 //creation de la table comments
@@ -82,5 +84,5 @@ try {
     $db->exec($sql);
     echo "Table comments successfully created\n";
 } catch (PDOException $e) {
-    echo "Désolé la table n'a pas pu être crée\n".$e->getMessage()."\nAborting Process\n";
+    echo "Something went wrong while creating comments : ".$e->getMessage()."\nAborting Process\n";
 }

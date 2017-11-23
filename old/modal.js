@@ -37,7 +37,7 @@ send.onclick = event => {
   var imagePath = tmp[tmp.length - 1];
 
   var req = new XMLHttpRequest();
-  req.open("POST", "../forms/comment.php");
+
   req.onreadystatechange = () => {
     if (req.readyState == 4 && (req.status == 200 || req.status == 0) &&
       req.responseText != null && req.responseText != "") {
@@ -50,6 +50,7 @@ send.onclick = event => {
       div.appendChild(span);
     }
   };
+  req.open("POST", "../forms/comment.php");
   req.setRequestHeader("Content-type", "application/-x-www-form-urlencoded");
   req.send("img=" + imagePath + "&comment=" + com);
 }

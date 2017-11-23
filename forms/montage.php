@@ -33,10 +33,12 @@ imagesavealpha($copy, true);
 $src = imagecreatefrompng($img);
 
 if (strcmp($img, "../img/lunettes.png") == 0)
-  imagecopyresized($copy, $src, 0, 0, 0, 0, 662, 704, 1024, 768);
+  imagecopyresized($copy, $src, 0, 0, 0, 0, 320, 230, 1024, 768);
 else if (strcmp($img, "../img/barbe.png") == 0)
-    imagecopyresized($copy, $src, 0, 0, 0, 0, 662, 704, 1024, 768);
-else imagecopyresized($copy, $src, 0, 0, 0, 0, 662, 704, 1024, 768);
+    imagecopyresized($copy, $src, 0, 0, 0, 0, 331, 350, 1024, 1024);
+else if (strcmp($img, "../img/illuminati.png") == 0)
+    imagecopyresized($copy, $src, 0, 0, 0, 0, 480, 300, 1024, 768);
+else imagecopyresized($copy, $src, 0, 0, 0, 0, 332, 352, 512, 384);
 
 $destination = imagecreatefrompng($montageDir . $iuid . ".png");
 
@@ -52,14 +54,14 @@ if (strcmp($img, "../img/lunettes.png") == 0)
   $dest_x = 240;
   $dest_y = 0;
 } elseif (strcmp($img, "../img/barbe.png") == 0) {
-    $dest_x = 140;
-    $dest_y = 0;
+    $dest_x = 150;
+    $dest_y = 150;
 }
 else if (strcmp($img, "../img/illuminati.png") == 0) {
   $dest_x = 206;
-  $dest_y = 0;
+  $dest_y = 100;
 } else if (strcmp($img, "../img/diademe.png") == 0) {
-  $dest_x = 180;
+  $dest_x = 206;
   $dest_y = 0; 
 }
 imagecopymerge_alpha($destination, $copy, $dest_x, $dest_y, 0, 0, $x_src, $y_src, 100);

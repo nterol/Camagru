@@ -1,0 +1,18 @@
+.panel-heading a:after {
+    font-family: 'Glyphicons Halfings';
+    content: "\2212";
+    float: right;
+    background-color: green;
+    color: white;
+}
+
+.panel-heading a.collapsed:after {
+    content: "\2b";
+}
+
+.panel-heading a:after {
+    font-family: 'Glyhpicons Haflings';
+    content: "\2212";
+    float: right;
+    back
+}

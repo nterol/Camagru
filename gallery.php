@@ -15,7 +15,7 @@ $montages = get_all_montage();
     </head>
 
     <body>
-        <?php include('./parts/header.php') ?>
+        <?php include('./parts/header_gallery.php') ?>
 
         <?php if (isset($_SESSION['id'])) {
     ?>
@@ -62,7 +62,7 @@ $montages = get_all_montage();
         foreach($montages as $i) {
             $class = "icon";
             if ($i['userid'] === $_SESSION['id']) {
-                $class .= "removable";
+                $class .= "-removable";
             }
             $gallery .= "<img class=\"" .$class . "\" src=\"./montage/" . $i['img'] . "\"data-userid=\"" . $i['userid']. "\"/>";
         }

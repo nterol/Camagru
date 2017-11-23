@@ -73,28 +73,30 @@ function handleVideo(stream) {
 
         var req = new XMLHttpRequest();
         req.onreadystatechange = function () {
-            // if (req.readyState == 4 && (req.status == 200 || req.status == 0) && req.responseText != null && req.responseText == "") {
-            //     var newImg = document.createElement("IMG");
-            //     newImg.className = "icon removable";
-            //     newImg.src = "montage/" + req.responseText;
+            if (req.readyState == 4 && (req.status == 200 || req.status == 0) && req.responseText != null && req.responseText == "") {
+                var newImg = document.createElement("IMG");
+                newImg.className = "icon-removable";
+                newImg.src = "montage/" + req.responseText;
 
-            //     newImg.onclick = function (event) {
-            //         var pathToImg = event.srcElement.src;
-            //         var srcTab = pathToImg.split('/');
-            //         var src = srcTab[srcTab.length - 1];
+                newImg.onclick = event => {
+                    console.log("on y passe");
+                    var pathToImg = event.srcElement.src;
+                    var srcTab = pathToImg.split('/');
+                    var src = srcTab[srcTab.length - 1];
 
-            //         var xhr = new XMLHttpRequest();
-            //         xhr.onreadystatechange = () => {
-            //             if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText == "OK") {
-            //                 miniatures.removeChild(event.srcElement);
-            //             }
-            //         };
-            //         xhr.open("POST", "./forms/removemontage.php", true);
-            //         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            //         xhr.send("src=" + src);
-            //     }
-            //     miniatures.appendChild(newImg);
-            // }
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = () => {
+                        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText == "OK") {
+                            console.log("ca devrait partir");
+                            miniatures.removeChild(event.srcElement);
+                        }
+                    };
+                    xhr.open("POST", "./forms/removemontage.php", true);
+                    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhr.send("src=" + src);
+                }
+                miniatures.appendChild(newImg);
+            }
         };
         req.open("POST", "./forms/montage.php", true);
         req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

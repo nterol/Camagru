@@ -6,8 +6,9 @@
     include_once("functions/display_infinite.php");
 
     $imgPerPages = 4;
+    $current_user = $_SESSION['id'];
 
-    $montages = get_montage(0, $imgPerPages);
+    $montages = get_all_montage(0, $imgPerPages);
     $more = false;
     if ($montages != "" && array_key_exists("more", $montages)) {
       $more = true;
@@ -21,6 +22,7 @@
   <title>Camagru</title>
   <link rel="stylesheet" type="text/css" href="style/views.css">
   <link rel="stylesheet" type="text/css" href="style/parts.css">
+  <link rel="stylesheet" type="text/css" href="style/museum.css">
 </head>
 <body>
 <?php include "parts/header_views.php" ?>
@@ -29,7 +31,7 @@
     if (isset($montages['error'])) {
       echo $montages['error'];
     } else if ($montages != null) {
-        display_infinite($montages);
+        display_infinite($montages, $current_user);
         
         }
         ?>
