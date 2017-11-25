@@ -133,24 +133,3 @@ function get_montage($start, $nb)
 //         return ($s);
 //     }
 // }
-
-
-function get_user_info($src) {
-  include_once './setup/database.php';
-
-  try {
-    $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
-    $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $query = $lol->prepare("SELECT mail, username FROM users, gallery WHERE gallery.img=:img AND users.id=gallery.userid");
-    $query->execute(array(':img' => $src));
-
-    $val = $query->fetch();
-    $query->closeCursor();
-
-    return ($val);
-  } catch (PDOException $e) {
-    $ret = "";
-    $ret['error'] = $e->getMessage();
-    return ($ret);
-  }
-}

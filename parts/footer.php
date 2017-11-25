@@ -1,1 +1,3 @@
-<div class="footer">nterol - 2017</div>
+<div class="footer">
+    <span>nterol - 2017</span>
+</div>

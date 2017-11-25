@@ -23,11 +23,9 @@ function print_comment($comments, $current_user) {
 
 
 function display_infinite($montages, $current_user) {
-    print_r($montages);
     foreach($montages as $picture) {
         $comments = get_comment($picture['img']);
         print_r($comments);
-
         if ($picture['id'] > 9) {
             $card_class = "card-hidden";
         } else $card_class = "card";
@@ -58,10 +56,10 @@ function display_infinite($montages, $current_user) {
         print_comment($comments, $current_user);
         echo                    "
                             </div>
-                            <form method=\"POST\" action=\"forms/comment.php\">
+                            <form method=\"post\" action=\"./forms/comment.php\">
                             <input type=\"hidden\" name=\"data\" value=\"". $picture['id'] ."\" />
                                 <textarea name=\"comment-area\" cols=\"30\" rows=\"10\"></textarea>
-                                <button class=\"send-it\" onclick=\"post_comment\">
+                                <input name=\"submit\" type=\"submit\" value=\"Envoyer\">
                             </form>
                         </div>
                     </div>
@@ -70,4 +68,4 @@ function display_infinite($montages, $current_user) {
         </div>
         ";
     }
-}
+} 

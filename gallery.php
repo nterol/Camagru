@@ -8,14 +8,17 @@ $montages = get_all_montage();
     <html>
 
     <head>
-        <link rel="stylesheet" type="text/css" href="style/gallery.css">
+
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style/test.css">
+        <link rel="stylesheet" type="text/css" href="style/parts.css">
+        <link rel="stylesheet" type="text/css" href="style/forms.css">
+        <link rel="stylesheet" type="text/css" href="style/header.css">
+        <link rel="stylesheet" type="text/css" href="style/gallery.css">
         <title>gallery</title>
     </head>
 
     <body>
-        <?php include('./parts/header_gallery.php') ?>
+        <?php include('./parts/header.php') ?>
 
         <?php if (isset($_SESSION['id'])) {
     ?>
@@ -74,19 +77,11 @@ $montages = get_all_montage();
         <?php
 } else {
         ?>
-            <div class="overlay">
+            <div class="body-forms">
                 <div class="title-forms">
                     <h1>Connexion</h1>
                 </div>
-
-
-
-
-
-
-
-
-                <div class="container">
+                <div class="container connexion">
                     <form method="post" action="forms/login.php">
                         <label> email : </label>
                         <input id="mail" name="email" type="mail">
@@ -108,7 +103,7 @@ $montages = get_all_montage();
             </div>
             <?php
     } ?>
-                <?php //include './parts/footer.php' ?>
+                <?php include './parts/footer.php' ?>
 
     </body>
     <?php if (isset($_SESSION['id'])) {

@@ -1,0 +1,3 @@
+<?PHP
+$lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+$lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

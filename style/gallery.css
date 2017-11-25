@@ -6,89 +6,6 @@ body {
 
 /* just for the header */
 
-#header {
-    width: 100%;
-    height: 60px;
-    background-color: whitesmoke;
-    text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 15px;
-}
-
-
-/*
-    .animate {
-        isolation: isolate;
-    }
-*/
-
-#header button {
-    float: left;
-    background: none;
-    border: 0;
-    box-sizing: border-box;
-    margin: 0.2em;
-    padding: 1em 2em;
-    box-shadow: inset 0 0 0 2px red;
-    color: red;
-    font-size: inherit;
-    font-weight: 700;
-    position: relative;
-    vertical-align: middle;
-}
-
-#header button::before,
-#header button::after {
-    box-sizing: inherit;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.draw {
-    transition: color 0.25s;
-}
-
-.draw::before,
-.draw::after {
-    border: 2px solid transparent;
-    width: 0;
-    height: 0;
-}
-
-.draw::before {
-    top: 0;
-    left: 0;
-}
-
-.draw::after {
-    bottom: 0;
-    right: 0;
-}
-
-.draw:hover {
-    color: $cyan;
-}
-
-.draw:hover::before,
-.draw:hover::after {
-    width: 100%;
-    height: 100%;
-}
-
-.draw:hover::before {
-    border-top-color: $cyan;
-    border-right-color: $cyan;
-    transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
-}
-
-.draw:hover::after {
-    border-bottom-color: $cyan;
-    border-left-color: $cyan;
-    transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
-}
-
 .welcome {
     margin-left: 0.5em;
     margin-right: 0.5em;
@@ -115,27 +32,14 @@ body {
     color: grey;
 }
 
-.button {
-    float: right;
-    height: 56px;
-    width: 100px;
-    line-height: 56px;
-    border: 2px solid bisque;
-    color: white;
-}
 
-.button:hover {
-    color: #cfcfcf;
-    cursor: pointer;
-}
-
-.footer {
+/* .footer {
     width: 100%;
     height: 28px;
     line-height: 28px;
     background-color: bisque;
     text-align: center;
-}
+} */
 
 .body {
     margin: 8px;
@@ -302,7 +206,27 @@ video {
     left: 140px;
 }
 
-.removable:hover {
+#miniatures {
+    border: solid 2px grey;
+    width: 16em;
+    padding-left: 5px;
+    height: 36em;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+}
+
+#miniatures:hover {
+    overflow: auto;
+}
+
+.icon-removable {
+    width: 15em;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 0.5em;
+}
+
+.icon-removable:hover {
     cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
 }

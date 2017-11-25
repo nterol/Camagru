@@ -2,9 +2,9 @@
 session_start();
 include '../functions/signup_stock.php';
 
-$mail = $_POST['email'];
-$username = $_POST['username'];
-$password = $_POST['password'];
+$mail = htmlspecialchars($_POST['email']);
+$username = htmlspecialchars($_POST['username']);
+$password = htmlspecialchars($_POST['password']);
 
 $_SESSION['error'] = null;
 

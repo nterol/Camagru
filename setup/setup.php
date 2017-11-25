@@ -1,10 +1,25 @@
-#!/usr/bin/php
 <?php
 session_start();
 include 'database.php';
+?>
 
-if ($_SESSION['id'] != null)
-    $_SESSION['id'] = null;
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" type="text/css" href="../style/forms.css">
+<head>
+  <title>Verify</title>
+</head>
+<body>
+  <div class="body-forms">
+    <div class="title-forms">SET UP</div>
+      <div class="container verify">
+        <div class="verify">
+        <ul>
+
+<?php
+
+if (isset($_SESSION['id']))
+    unset($_SESSION);
 
 //CREATE DATABASE
 try {
@@ -12,9 +27,12 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "CREATE DATABASE `".$DB_NAME."`";
     $db->exec($sql);
-    echo "DB Camagru successfuly created\n";
+    echo "<li>DB Camagru successfuly created</li>";
 } catch (PDOException $e) {
-    echo "Could not generate database sorry\n".$e->getMessage()."\nAborting process\n";
+    echo "<li>Could not generate database sorry :".$e->getMessage()."</br>Aborting process</li>";
+    ?>  </br>
+    <a href="./drop.php"><div>Drop DB</div></a>
+    <?php
     exit(-1);
 };
 
@@ -32,9 +50,9 @@ try {
     `verified` VARCHAR(1) NOT NULL DEFAULT 'N'
   )";
     $db->exec($sql);
-    echo "Table users created successfully\n";
+    echo "<li>Table users created successfully</li>";
 } catch (PDOException $e) {
-    echo "Yeah..sorry there was a mistake while creating the table\n".$e->getMessage()."\nAborting process\n";
+    echo "<li>Yeah..sorry there was a mistake while creating the table</br>".$e->getMessage()."</br>Aborting process</li>";
 }
 //creation de la table gallery
 try {
@@ -47,9 +65,9 @@ try {
     FOREIGN KEY (userid) REFERENCES users(id)
   )";
     $db->exec($sql);
-    echo "Table gallery was created successfully\n";
+    echo "<li>Table gallery was created successfully</li>";
 } catch (PDOException $e) {
-    echo "Something went wrong while creating gallery : ".$e->getMessage()."\nAborting Process\n";
+    echo "<li>Something went wrong while creating gallery : ".$e->getMessage()."</br>Aborting Process</li>";
 }
 
 //Creation de la table Like
@@ -64,9 +82,9 @@ try {
     FOREIGN KEY (galleryid) REFERENCES gallery(id)
   )";
     $db->exec($sql);
-    echo "Table likes created successfully\n";
+    echo "<li>Table likes created successfully</li>";
 } catch (PDOException $e) {
-    echo "Something went wrong while creating Like".$e->getMessage()."\nAborting Process\n";
+    echo "<li>Something went wrong while creating Like".$e->getMessage()."</br>Aborting Process</li>";
 }
 
 //creation de la table comments
@@ -82,7 +100,16 @@ try {
     FOREIGN KEY (galleryid) REFERENCES gallery(id)
   )";
     $db->exec($sql);
-    echo "Table comments successfully created\n";
+    echo "<li>Table comments successfully created</li>";
 } catch (PDOException $e) {
-    echo "Something went wrong while creating comments : ".$e->getMessage()."\nAborting Process\n";
+    echo "<li>Something went wrong while creating comments : ".$e->getMessage()."<\br>Aborting Process</li>";
 }
+
+?>
+ </ul>
+ </br>
+          <a href="../si.php"><div>Go Sign Up</div></a>
+</div>
+</div>
+</body>
+</html>

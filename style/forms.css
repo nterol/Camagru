@@ -1,0 +1,140 @@
+.body-forms {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: ". . ." ". title ." ". container .";
+}
+
+.title-forms {
+    grid-area: title;
+    font-family: 'Roboto';
+    font-size: 1em;
+    justify-content: center;
+    margin: 0.5em auto;
+    padding: 2em;
+    color: black;
+}
+
+.container {
+    grid-area: container;
+    border: 3px solid black;
+    justify-content: center;
+    padding: 2em;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1)
+}
+
+
+/* .container:hover {
+    padding: 2.25em 1.6875em;
+    background-image: -webkit-repeating-radial-gradient(center center, rgba(0, 0, 0, 2), rgba(0, 0, 0, 2) 1px, transparent 1px, transparent 100%);
+    background-image: -moz-repeating-radial-gradient(center center, rgba(0, 0, 0, 2), rgba(0, 0, 0, 2) 1px, transparent 1px, transparent 100%);
+    background-image: -ms-repeating-radial-gradient(center center, rgba(0, 0, 0, 2), rgba(0, 0, 0, 2) 1px, transparent 1px, transparent 100%);
+    background-image: repeating-radial-gradient(center center, rgba(0, 0, 0, 2), rgba(0, 0, 0, 2) 1px, transparent 1px, transparent 100%);
+    -webkit-background-size: 5px 5px;
+    -moz-background-size: 5px 5px;
+    background-size: 5px 5px;
+    background-color: #eafeea;
+} */
+
+.verify {
+    font-family: 'Roboto';
+    font-size: 18px;
+}
+
+.verify a div {
+    padding: 0.5em;
+    color: black;
+}
+
+.verify a:before div {
+    color: black;
+    border: none;
+    padding: 0.5em;
+}
+
+.verify a:hover {
+    text-decoration: none;
+}
+
+.verify a:hover div {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+label {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+label ::first-letter {
+    font-size: 110%;
+    color: yellow;
+}
+
+input[type=mail],
+input[type=password],
+input[type=text] {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    width: 100%;
+    padding: 0.5em 0.02em;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid black;
+    background-color: rgba(0, 0, 0, 0);
+    margin: 2.1em 0;
+    justify-content: center;
+}
+
+input[type=mail]:focus,
+input[type=password]:focus,
+input[type=text]:focus {
+    outline: none;
+    border: 2px solid black;
+    background-color: white;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid black;
+    color: black;
+    padding: 14px 20px;
+    margin: 1em 0;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+input[type=submit]:hover {
+    background-color: lightpink;
+}
+
+a {
+    margin-top: 0.5em;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a:hover {
+    font-size: 1.1em;
+    text-decoration: underline;
+}
+
+span {
+    justify-content: center;
+    text-align: center;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
