@@ -8,4 +8,5 @@
 
 # special files #
 #################
-./montage/
+montage/*
+todolist.ntm
