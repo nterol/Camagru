@@ -2,69 +2,95 @@
 session_start();
 
 include_once("./functions/comments.php");
+include_once("./functions/like.php");
 
-function get_color($id, $current_user) {
-    if ($id === $current_id)
+function get_color($comment_username, $current_user) {
+    if ($comment_username === $current_user)
         $com_color = "grey";
     else $com_color = "blue";
     return ($com_color);
 }
 
-function print_comment($comments, $current_user) {
+
+function print_comment($comments, $current_username) {
 
     foreach($comments as $message) {
-        echo "
-        <div class=\"message\">
-            <p class=\"content\">". $message['comment'] ."</p>
-            <p class=\"diverse\">" . $message['username'] . "</p>
-        </div>";
+        $com_color = get_color($message['username'], $current_username);
+        if ($com_color === "grey")
+            $name_side = "you";
+        else $name_side = "me";
+        if ($message != null) {
+            echo("
+            <div class=\"all\">
+                <span class=\"username ".$name_side."\">". $message['username']. "</span>
+                <div class=\"message ".$com_color."\">
+                    <span class=\"content\">". $message['comment'] ."</span>
+                    <span class=\"diverse\">
+                 <span class=\"date\">" . $message['date'] . "</span>
+                 </span>
+            </div>
+            </div>");
+        }
     }
 }
 
+function define_like($firstLove) {
+    $current_userid = $_SESSION['id'];
+    foreach ($firstLove as $like) { 
+        if ($like['touch'] == 1 && $current_userid == $like['userid']) {
+            $like['src'] = "img/heart.png";
+            $like['url'] = "&type=unlike";
+            return ($like);
+         } 
+        }
+        $like = array(
+            "src" => "img/no_heart.png",
+            "url" => "&type=like"
+        );
+        return ($like);
+}
 
-function display_infinite($montages, $current_user) {
+function display_infinite($montages) {
+    $current_username = $_SESSION['username'];
     foreach($montages as $picture) {
-        $comments = get_comment($picture['img']);
-        print_r($comments);
-        if ($picture['id'] > 9) {
+        $firstLove = get_like($picture['id'], $picture['img']);
+        $nb_like = count($firstLove);
+        $like = define_like($firstLove);
+        $comments = get_comment($picture['id'], $picture['img']);
+        if ($picture['id'] > 6) {
             $card_class = "card-hidden";
         } else $card_class = "card";
         echo "
-        <div class=\"". $card_class . "\">
-            <div class=\"photo\" id=\"". $picture['id'] ."\">
-                <img src=\"montage/" . $picture['img'] . "\" />
+        <div class=\"". $card_class ."\" id=\"post" .$picture['id'] . "\">
+            <div class=\"photoCell\" id=\"". $picture['id'] ."\">
+                <img class=\"photo\" src=\"montage/" . $picture['img'] . "\" />
+                <div class=\"overlay\">
+                    <a href=\"./forms/push_like.php?img=". $picture['img'] . "&id=". $picture['id'] . $like['url']. "\">
+                        <img class=\"like-overlay\" src=\"". $like['src']. "\">
+                    </a>
+                </div>
             </div>
             <div class=\"misc\">
-                <span class=\"like\"
-                <img src=\"img/up.png\"/>
+                <span class=\"like\">
+                <img class=\"icon\" src=\"".$like['src'] ."\"/>
+                <span class=\"nb-like\">". $nb_like . "<span\">
+                <span></span>
+                <span>
             </div>
-            <div class=\"panel-group\" id=\"accordion\">
-                <div class=\"comments panel panel-default\" id=\"panel". $picture['id'] . "\">
-                    <div class=\"panel-heading\">
-                        <h4 class=\"panel-heading\">
-                            <a data-toggle=\"collapse\" data-target=\"#collapse" . $picture['id'] . "\"
-                            href=\"#collapse" . $picture['id'] . "\">
-                            Comments
-                            </a>
-                        </h4>
-                    </div>
-
-                    <div id=\"collapse" . $picture['id'] . "\" class=\"panel-collapse collapse in\">
-                        <div \"panel-body\">
-                            <div =\"forum\">
-                            ";
-        print_comment($comments, $current_user);
-        echo                    "
-                            </div>
+                    <div class=\"comment-section\">
+                        <div class=\"forum\">"; 
+                            print_comment($comments, $current_username);
+                            echo "
+                        </div>
+                        <div class=\"text-section\">
                             <form method=\"post\" action=\"./forms/comment.php\">
-                            <input type=\"hidden\" name=\"data\" value=\"". $picture['id'] ."\" />
-                                <textarea name=\"comment-area\" cols=\"30\" rows=\"10\"></textarea>
-                                <input name=\"submit\" type=\"submit\" value=\"Envoyer\">
+                            <input type=\"hidden\" name=\"data-id\" value=\"". $picture['id'] ."\" />
+                            <input type=\"hidden\" name=\"data-img\" value=\"". $picture['img']."\" />
+                            <textarea placeholder=\"Say something...    \" name=\"comment-area\"rows=\"3\"></textarea>
+                            <input name=\"submit\" type=\"submit\" value=\"Envoyer\">
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
         ";
     }

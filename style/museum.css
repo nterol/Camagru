@@ -1,18 +1,245 @@
-.panel-heading a:after {
-    font-family: 'Glyphicons Halfings';
-    content: "\2212";
-    float: right;
+body {
+    font-family: "Roboto", sans-serif;
+    background: linear-gradient(90deg, #1a2a6c, #b21f1f, #fdbb2d);
+}
+
+.notif {
+    font-size: 10px;
+}
+
+.comment-check {
+    grid-area: comment-check;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input[type=checkBox] {
+    position: absolute;
+    left: -9999px;
+}
+
+label {
+    display: block;
+    position: relative;
+    margin: 20px;
+    padding: 15px 30px 15px 62px;
+    border: 3px solid #fff;
+    border-radius: 100px;
+    color: #fff;
+    background-color: #6a8494;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .2s, box-shadow .2s;
+    font-family: "Roboto", sans-serif;
+}
+
+label::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    width: 32px;
+    border: 3px solid #fff;
+    border-radius: 100px;
+    transition: background-color .2s;
+}
+
+label:hover,
+input:focus+label {
+    box-shadow: 0 0 20px rgba(0, 0, 0, .6);
+}
+
+input:checked+label {
+    background-color: #ab576c;
+}
+
+input:checked+label::before {
+    background-color: #fff;
+}
+
+.thegrid {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-template-rows: auto;
+    grid-template-areas: ". comment-check ." ". views ."
+}
+
+.views {
+    grid-area: views;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 1em 0.5em;
+    width: 20em;
+    border-radius: 6px;
+    border: 2px solid black;
+    padding: 0.2em;
+    background-color: white;
+}
+
+.card-hidden {
+    display: none;
+}
+
+.photoCell {
+    width: inherit;
+    position: relative;
+}
+
+.photo {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.photoCell:hover .overlay {
+    opacity: 50;
+}
+
+.photoCell:hover .photo {
+    filter: blur(4px);
+    -o-filter: blur(4px);
+    -ms-filter: blur(4px);
+    -moz-filter: blur(4px);
+    -webkit-filter: blur(4px);
+}
+
+.like-overlay {
+    position: absolute;
+    top: 25%;
+    left: 30%;
+}
+
+.icon {
+    width: 1em;
+    height: auto;
+}
+
+#accordion {
+    list-style: none;
+}
+
+#accordion button {
+    font-size: 1em;
+    padding: 1em;
     background-color: green;
     color: white;
+    border: 1px solid black;
 }
 
-.panel-heading a.collapsed:after {
-    content: "\2b";
+#accordion li div.content {
+    display: none;
+    padding: 1em;
+    background: whitesmoke;
+    border: 1px solid grey;
 }
 
-.panel-heading a:after {
-    font-family: 'Glyhpicons Haflings';
-    content: "\2212";
-    float: right;
-    back
+#accordion li:hover div.content {
+    display: block;
+}
+
+.forum {
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+    position: relative;
+    width: auto;
+    height: 15em;
+}
+
+.all {
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    width: 50%;
+    border-radius: 8%/50%;
+    color: white;
+    margin: 0.2em 0.8em 0.5em 0.1em;
+    padding: 0.2em;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8em;
+    display: flex;
+    flex-direction: column;
+    padding: 0.2em 1em;
+}
+
+.grey {
+    margin-left: 9em;
+    border: 0.5px solid grey;
+    background-color: white;
+    color: black;
+}
+
+.blue {
+    float: left;
+    background-color: #37379B;
+}
+
+.me {
+    margin-left: 1em;
+}
+
+.you {
+    margin-left: 12.5em;
+}
+
+.username {
+    font-size: 10px;
+    font-family: "Roboto", sans-serif;
+}
+
+.diverse {
+    margin-top: 0.2em;
+    font-size: 9px;
+}
+
+textarea {
+    resize: none;
+    outline: none;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 0.5em;
+    margin-top: 1em;
+    border: none;
+    border-top: 2px solid black;
+    overflow: auto;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+input[type=submit] {
+    width: 100%;
+    height: 2em;
+    border-top: 2px solid black;
+    border: none;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
 }

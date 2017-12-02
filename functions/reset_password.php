@@ -2,7 +2,7 @@
 
 function reset_password($mail, $host)
 {
-    include_once '../setup/database.php';
+    include_once '../config/database.php';
     include_once '../functions/mail.php';
 
     try {

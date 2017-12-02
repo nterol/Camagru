@@ -1,16 +1,15 @@
 <?php
 
-function get_comment($src) {
-    include('./setup/database.php');
+function get_comment($galleryId, $img) {
+    include('./config/database.php');
   
     try {
       $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
       $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $query = $lol->prepare("SELECT comments.comment, 'users.username' FROM comments WHERE 'gallery.img'=:img AND 'gallery.id'=comments.galleryid AND comments.userid='users.id'");
-      $query->execute(array(':img' => $src));
+      $query = $lol->prepare("SELECT comments.comment, comments.date,  users.username FROM comments, users WHERE comments.galleryid=:gId AND comments.galleryimg=:img AND users.id=comments.userid ORDER BY comments.id ASC");
+      $query->execute(array(':gId' => $galleryId, ':img'=> $img));
 
       $val = $query->fetchAll();
-      print_r($val);
       return ($val);
     } catch (PDOException $e) {
       $ret = "";
@@ -19,27 +18,41 @@ function get_comment($src) {
     }
   }
 
-  function  post_comment($uid, $galleryId, $comment) {
-    include('../setup/database.php');
-    include('f_database.php');
+  function  post_comment($uid, $galleryId, $img, $comment, $date) {
+    include('../config/database.php');
     
     try {
-      $query = $lol->prepare("INSERT INTO comments(userid, galleryid, comment) VALUES (:uid, :gId, :comment)");
-      $query->execute(array(':userid' => $uid, ':gId' => $galleryId, ':comment' => $comment));
+      $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+      $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $query = $lol->prepare("INSERT INTO comments(userid, galleryid, galleryimg, date, comment) VALUES (:uid, :gId, :img, :date, :comment)");
+      $query->execute(array(':uid' => $uid, ':gId' => $galleryId, ':img' => $img, ':date' => $date, ':comment' => $comment));
       return (0);
     } catch (PDOException $e) {
-      return ($e->getMessage());
+      $ret['error'] = "post_comment : " . $e->getMessage();
+      return (print_r($ret));
     }
   }
 
-  function get_user_info($galleryId) {
-    include_once './setup/database.php';
+  function uncomment_all($imgId, $img) {
+    try {
+      $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+      $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $query = $lol->prepare("DELETE FROM comments WHERE galleryid=:gId AND img=:img");
+      $query->execute(array(':gId' => $gId, ':img' => $img));
+      return (0);
+    } catch (PDOException $e) {
+      return ($e->getMessage());
+  }
+}
+
+  function get_user_info($galleryId, $img) {
+    include('../config/database.php');
   
     try {
       $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
       $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $query = $lol->prepare("SELECT mail, username FROM users, gallery WHERE gallery.id=:id AND users.id=gallery.userid");
-      $query->execute(array(':id' => $galleryId));
+      $query = $lol->prepare("SELECT mail, username FROM users, gallery WHERE gallery.id=:id AND gallery.img=:img AND users.id=gallery.userid");
+      $query->execute(array(':id' => $galleryId, ':img' =>$img));
   
       $val = $query->fetch();
       $query->closeCursor();
@@ -47,7 +60,7 @@ function get_comment($src) {
       return ($val);
     } catch (PDOException $e) {
       $ret = "";
-      $ret['error'] = $e->getMessage();
+      $ret['error'] = "get_user_infos : " . $e->getMessage();
       return ($ret);
     }
   }

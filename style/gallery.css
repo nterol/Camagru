@@ -1,10 +1,9 @@
 body {
     margin: 0;
     font-family: "Montserrat", sans-serif;
+    background: linear-gradient(120deg, 60%#00c9ff, 10% yellow, #92fe9d);
+    background-repeat: no-repeat;
 }
-
-
-/* just for the header */
 
 .welcome {
     margin-left: 0.5em;
@@ -32,17 +31,8 @@ body {
     color: grey;
 }
 
-
-/* .footer {
-    width: 100%;
-    height: 28px;
-    line-height: 28px;
-    background-color: bisque;
-    text-align: center;
-} */
-
 .body {
-    margin: 8px;
+    margin: 10em auto;
     display: flex;
     margin-left: auto;
     margin-right: auto;
@@ -52,6 +42,12 @@ body {
 .main {
     width: 640px;
     position: relative;
+    background-color: white;
+    padding: 0.8em;
+    border-radius: 6px;
+    border: solid 2px black;
+    margin-top: 2em;
+    margin-bottom: 3em;
 }
 
 .side {
@@ -72,7 +68,6 @@ body {
 */
     width: 100%;
     display: grid;
-    justify-items: center;
     align-items: center;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr 0.5fr;
@@ -136,9 +131,9 @@ input:checked {
 
 .capture {
     position: absolute;
-    top: 550px;
-    left: 0;
-    right: 0;
+    top: 563px;
+    left: 12px;
+    right: 12px;
     height: 50px;
     background-color: rgba(162, 187, 202, 0.5);
     text-align: center;

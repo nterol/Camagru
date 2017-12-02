@@ -67,11 +67,10 @@ else if (strcmp($img, "../img/illuminati.png") == 0) {
 imagecopymerge_alpha($destination, $copy, $dest_x, $dest_y, 0, 0, $x_src, $y_src, 100);
 
 $success = imagepng($destination, $montageDir.$iuid.".png");
-
 if ($success) {
   if (($val = put_montage($id, $iuid . ".png")) === 0)
     echo ($iuid.'.png');
-   else echo $val;
+   else print_r($val);
 }
 
 function imagecopymerge_alpha($dest, $srcIm, $dest_x, $dest_y, $src_x, $src_y, $src_w, $src_h, $wtf) {

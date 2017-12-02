@@ -1,20 +1,11 @@
 <?php
     session_start();
-
-    echo ($_SERVER['']);
-    include_once("functions/montage.php");
+    include_once("./functions/montage.php");
     // include_once("functions/like.php");
     include_once("functions/display_infinite.php");
-
-    $imgPerPages = 4;
-    $current_user = $_SESSION['id'];
+    include_once("./functions/comments.php");
 
     $montages = get_all_montage();
-    $more = false;
-    if ($montages != "" && array_key_exists("more", $montages)) {
-      $more = true;
-      $lastIdMontage = $montages[count($montages) - 2]['id'];
-    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,14 +18,24 @@
 </head>
 <body>
 <?php include "parts/header.php" ?>
-  <div id="views">
-    <?php
-    if (isset($montages['error'])) {
-      echo $montages['error'];
-    } else if ($montages != null) {
-        display_infinite($montages, $current_user);
-        
-        }
+  <div class="thegrid">
+  <div class="comment-check">
+  <span class="notif">Me notifier par mail lorsque ma photo est commentee</span>
+<form method="POST" action="./forms/change_password.php">
+      <input id="toggle" name="comment_mail" id="checkBox" type="checkBox">
+      <label for="toggle"></label>
+</form>
+</div>
+    <div class="views">
+      <?php
+      if (isset($montages['error'])) {
+        echo $montages['error'];
+        print_r($montages);
+      } else if ($montages != null) {
+            display_infinite($montages);
+          }
         ?>
-        </body>
-        </html>
+    </div>
+</body>
+<script type="text/javascript" src="./js/infinity.js"></script>
+</html>

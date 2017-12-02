@@ -1,0 +1,25 @@
+.username,
+.mailAdress,
+.password {
+    border: solid 2px black;
+    padding: 2em 1em;
+    margin: 1em;
+}
+
+.username form,
+.mailAdress form,
+.password form {
+    display: none;
+}
+
+.username:hover form,
+.mailAdress:hover form,
+.password:hover form {
+    display: block;
+}
+
+.username:hover .display-username,
+.mailAdress:hover .display-mail,
+.password:hover span {
+    display: none;
+}

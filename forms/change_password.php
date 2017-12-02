@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../functions/change_password.php';
+include_once('./functions/change_password.php');
 
 //retrieve value :
 $pass_one = $_POST['password1'];

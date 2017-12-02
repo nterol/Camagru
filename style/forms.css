@@ -1,8 +1,17 @@
+body {
+    background: linear-gradient(110deg, #22c1c3, #fdbb2d);
+    font-family: 'roboto', sans-serif;
+}
+
 .body-forms {
+    margin: 11em auto;
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr 0.5fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: ". . ." ". title ." ". container .";
+    padding-top: 2em;
+    padding-bottom: 10em;
 }
 
 .title-forms {
@@ -13,6 +22,7 @@
     margin: 0.5em auto;
     padding: 2em;
     color: black;
+    text-shadow: 10px 5px 14px pink;
 }
 
 .container {
@@ -21,7 +31,12 @@
     justify-content: center;
     padding: 2em;
     border-radius: 6px;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1)
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    /* margin-bottom: 8em; */
+}
+
+.connexion {
+    margin-bottom: 5em;
 }
 
 

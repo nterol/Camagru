@@ -1,7 +1,11 @@
 <?php
 session_start();
 include_once("./functions/montage.php");
+// include_once("./functions/check_if_exists.php");
+// is_anyone_here();
 $montages = get_all_montage();
+
+print_r($montages);
 ?>
 
     <!DOCTYPE html>
@@ -65,9 +69,14 @@ $montages = get_all_montage();
         foreach($montages as $i) {
             $class = "icon";
             if ($i['userid'] === $_SESSION['id']) {
-                $class .= "-removable";
+            
+            $gallery .= "
+            <div class=\"overlay-gallery\">
+                <a href=\" ./forms/remove_montage.php?img=\"". $i['img'] ."&id=". $i['id'] ."\">
+                    <img class=\"" .$class . "\" src=\"./montage/" . $i['img'] . "\"data-userid=\"" . $i['userid']. "\"/>
+                <a>
+            </div>";
             }
-            $gallery .= "<img class=\"" .$class . "\" src=\"./montage/" . $i['img'] . "\"data-userid=\"" . $i['userid']. "\"/>";
         }
         echo $gallery;
     } ?>

@@ -1,7 +1,7 @@
 <?php
 function log_user($mail, $password)
 {
-    include_once '../setup/database.php';
+    include_once '../config/database.php';
 
     try {
         $fdp = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);

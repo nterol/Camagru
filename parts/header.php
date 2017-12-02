@@ -1,34 +1,28 @@
 <div id="header">
-    <section class="animate">
-        <button class="draw">Camagru</button>
-    </section>
-    
-    <?php if (isset($_SESSION['id'])) {
-        $tab = explode("/", $_SERVER['REQUEST_URI']);
-        if ($tab[2] == "museum.php") {?>
-    
-    <div class="button-header" onclick="location.href='gallery.php'">
-        <span>Views</span>
+    <div class="Camagru">
+       <span class="camagru-title">Camagru</span>
     </div>
     
-    <?php } else if ($tab[2] == "gallery.php") {?>
+    <?php 
+        $tab = explode("/", $_SERVER['REQUEST_URI']);
+        if ($tab[2] == "museum.php") {?> 
+    <div class="button-header" onclick="location.href='http://<?php echo $_SERVER['HTTP_HOST']."/".$tab[1] ?>/gallery.php'">
+        <span>Photobooth</span>
+    </div>
     
-    <div class="button-header" onclick="location.href='museum.php'">
+    <?php } else {?>
+    <div class="button-header" onclick="location.href='http://<?php echo  $_SERVER['HTTP_HOST']."/".$tab[1] ?>/museum.php'">
         <span>Gallery</span>
     </div>
-
-        <?php } ?> 
-
-    <div class="button-header" onclick="location.href='forms/disconnect.php'">
+    <?php } 
+        if (isset($_SESSION['id'])) { ?> 
+    <div class="button-header" onclick="location.href='http://<?php echo $_SERVER['HTTP_HOST']."/".$tab[1] ?>/forms/disconnect.php'">
         <span> Deconnexion </span>
     </div>
-
     <?php } else { ?>
-    
-    <div class="button-header" onclick="location.href='gallery.php'">
+    <div class="button-header" onclick="location.href='http://<?php echo $_SERVER['HTTP_HOST']."/".$tab[1]?>/gallery.php'">
         <span>Login</span>
     </div>
     
     <?php } ?>
-
 </div> 

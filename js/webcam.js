@@ -77,6 +77,7 @@ function handleVideo(stream) {
                 var newImg = document.createElement("IMG");
                 newImg.className = "icon-removable";
                 newImg.src = "montage/" + req.responseText;
+                console.log(newImg);
 
                 newImg.onclick = event => {
                     console.log("on y passe");
@@ -148,7 +149,7 @@ function onBoxChecked(box) {
             img.src = document.querySelector('input[name="img"]:checked').value;
             var split = img.src.split("/");
             var file = split[split.length - 1];
-
+            ocnsole.log("hello");
             // if (file === "diademe.png")
             //     canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 180, 0, 240, 180);
             // else if (file === "lunettes.png")
@@ -164,6 +165,7 @@ function onBoxChecked(box) {
 }
 
 function sendMontage(imgData64, filterImg) {
+    console.log("Bonjour");
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && xhr.responseText != null || xhr.responseText != "") {
