@@ -17,7 +17,19 @@ function get_info($id, $username) {
     }
 }
 
-function change_username() {}
+function change_username($newName, $uid) {
+    include_once '../config/database.php';
+
+    try {
+        $dbc = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+        $dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = $dbc->prepare("UPDATE users SET username=:name WHERE id=:id");
+        $query->execute(array(':name' => $newName, ':id'=> $uid));
+        return (0);
+} catch (PDOException $e) {
+        return ($e->getMessage());
+    }
+}
 
 function change_password($password, $token)
 {
@@ -48,14 +60,14 @@ function change_password($password, $token)
     }
 }
 
-function notifications_off($uid, $username) {
+function set_notifications($uid, $onOrOff) {
     include("../config/database.php");
 
     try {
         $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
         $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = $lol->query("UPDATE users SET notifications='off' WHERE id=:uid AND username=:username");
-        $query->execute(array(':uid' => $uid, ':username' => $username));
+        $query = $lol->query("UPDATE users SET notifications=:val WHERE id=:uid");
+        $query->execute(array(':val'=> $onOrOff,':uid' => $uid, ':username' => $username));
         return (0);
     } catch (PDOException $e) {
         return($e->getMessage());

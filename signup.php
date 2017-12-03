@@ -9,7 +9,6 @@ session_start();
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style/parts.css">
     <link rel="stylesheet" type="text/css" href="style/forms.css">
-    <link rel="stylesheet" type="text/css" href="style/header.css">
 
     <title>Sign Up</title>
 </head>

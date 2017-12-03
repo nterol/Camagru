@@ -1,11 +1,7 @@
 <?php
 session_start();
 include_once("./functions/montage.php");
-// include_once("./functions/check_if_exists.php");
-// is_anyone_here();
 $montages = get_all_montage();
-
-print_r($montages);
 ?>
 
     <!DOCTYPE html>
@@ -16,7 +12,6 @@ print_r($montages);
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="style/parts.css">
         <link rel="stylesheet" type="text/css" href="style/forms.css">
-        <link rel="stylesheet" type="text/css" href="style/header.css">
         <link rel="stylesheet" type="text/css" href="style/gallery.css">
         <title>gallery</title>
     </head>
