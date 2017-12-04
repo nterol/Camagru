@@ -66,8 +66,8 @@ function set_notifications($uid, $onOrOff) {
     try {
         $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
         $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = $lol->query("UPDATE users SET notifications=:val WHERE id=:uid");
-        $query->execute(array(':val'=> $onOrOff,':uid' => $uid, ':username' => $username));
+        $query = $lol->prepare("UPDATE users SET notifications=:val WHERE id=:id");
+        $query->execute(array(':val'=> $onOrOff,':id' => $uid));
         return (0);
     } catch (PDOException $e) {
         return($e->getMessage());

@@ -3,9 +3,10 @@ session_start();
 include('./functions/settings.php');
 
 $profile = get_info($_SESSION['id'], $_SESSION['username']);
+print_r($_SESSION);
+echo "<br />";
 print_r($profile);
-
-
+echo($profile[0]['notifications']);
 ?>
     <!DOCTYPE HTML>
     <html>
@@ -78,10 +79,10 @@ print_r($profile);
                             <form method="post" action="./forms/settings.php">
                                 <input type="submit" name="notifications" value="
                                 <?php 
-    if ($profile[0]['notifications'] == 'Y')
-        echo(" Désactiver les notifications ");
-    else 
-        echo("Activer les notifications "); ?>" size="10">
+    if ($profile[0]['notifications'] == 'Y') { ?>
+        Désactiver les notifications
+    <?php } else {  ?>
+        Activer les notifications<?php } ?>" size="10">
                             </form>
                         </div>
                     </div>
