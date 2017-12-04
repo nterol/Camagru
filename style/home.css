@@ -6,6 +6,16 @@
     margin: 1em;
 }
 
+.message {
+    background-color: palegreen;
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 1em;
+    border-radius: 5px;
+    border: solid 1px green;
+    color: black;
+}
+
 .username form,
 .mailAdress form,
 .password form {
@@ -18,8 +28,8 @@
     display: block;
 }
 
-.username:hover .display-username,
-.mailAdress:hover .display-mail,
-.password:hover span {
+.username:hover .display-username, .username:hover .message,
+.mailAdress:hover .display-mail, .mailAdress:hover .message,
+.password:hover span, .password:hover .message {
     display: none;
 }
