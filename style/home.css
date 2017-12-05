@@ -28,8 +28,8 @@
     display: block;
 }
 
-.username:hover .display-username, .username:hover .message,
-.mailAdress:hover .display-mail, .mailAdress:hover .message,
-.password:hover span, .password:hover .message {
+.username:hover .display-username,
+.mailAdress:hover .display-mail,
+.password:hover span, {
     display: none;
 }

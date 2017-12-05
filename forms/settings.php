@@ -48,8 +48,11 @@ if (isset($_POST['submit_username'])) {
         if ($newUsername == null || $newUsername == '' || strlen($newUsername) < 3 || strlen($newUsername) > 255) {
             $_SESSION['error']['username'] = "Ton nom d'utilisateur doit comprendre entre 3 et 255 lettres";
             header('Location: ../home.php');
-        } else {
-            $new_name = change_username($username, $_SESSION['id']);
+        } else if ($_SESSION['username'] == $newUsername) {
+            $_SESSION['error']['username'] = "C'est le même nom wesh";
+            header('Location: ../home.php');
+        }else {
+            $new_name = change_username($newUsername, $_SESSION['id']);
             if ($new_name == 0) {
                 $_SESSION['username'] = $newUsername;
                 $_SESSION['success']['username'] = "Ton username a bien été modifié";
@@ -62,9 +65,7 @@ if (isset($_POST['submit_username'])) {
     }
 }
 
-if (isset($_POST['notifications'])) {
-
-    print_r($notif);    
+if (isset($_POST['notifications'])) { 
     if ($notif == "Désactiver les notifications") 
         $switch = "N";
     if ($notif == "Activer les notifications")
@@ -80,5 +81,26 @@ if (isset($_POST['notifications'])) {
      } else {
         $_SESSION['error'] = "Il y a eu un problème avec la mise à jour de vos préférences";
         header('Location: ../home.php');
+    }
+}
+
+if (isset($_POST['submit_mail'])) {
+    if (isset($_POST['change_mail'])) {
+        $newMail = htmlspecialchars($_POST['change_mail']);
+        if ($newMail == null || $newMail == '' || !filter_var($newMail, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['error']['mail'] = "Le format du mail n'est pas valide";
+            header('Location: ../home.php');
+        } else {
+            $val = change_mail($newMail, $_SESSION['id']);
+            if ($val == 0) {
+                $_SESSION['success']['mail'] = "Ton adresse mail a bien été changée";
+                header('Location: ../home.php');
+            } elseif ($val == -1) {
+                $_SESSION['error']['mail'] = "Cette adresse mail est déja prise";
+                header('Location: ../home.php');
+            } else if ($val == -2) {
+                header('Location: ../home.php');   
+            }
+        }
     }
 }

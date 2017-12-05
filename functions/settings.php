@@ -22,19 +22,34 @@ function change_username($newName, $uid) {
     try {
         $dbc = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
         $dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $query = $dbc->prepare("UPDATE users SET username=:username WHERE id=:id");
-        $query->execute(array(':username' => $newName, ':id'=> $uid));
-        $query->closeCursor();
-        $query = $dbc->prepare("SELECT username FROM users WHERE id=:id");
-        $query->execute(array(':id' => $uid));
-        $name = $query->fetchAll();
-        if ($name == $newName) {
-            return (0);
-        } else 
-        return (-1);
+        $query = $dbc->prepare("UPDATE users SET username=:newname WHERE id=:id");
+        $query->execute(array(':newname' => $newName, ':id' => $uid));
+        return (0);
 } catch (PDOException $e) {
         return ($e->getMessage());
+    }
+}
+
+function change_mail($mail, $uid) {
+    include '../config/database.php';
+
+    try {
+        $dbc = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+        $dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = $dbc->prepare("SELECT mail FROM users");
+        $query->execute(array());
+        $check = $query->fetchAll();
+        $query->closeCursor();
+        foreach($check as $c) {
+            if ($c['mail'] == $mail)
+                return (-1);
+        }
+        $query = $dbc-> prepare("UPDATE users SET mail=:mail WHERE id=:id");
+        $query->execute(array(':mail' => $mail, ':id' => $uid));
+        return (0);
+    } catch (PDOException $e) {
+        $_SESSION['error']['mail'] = $e->getMessage();
+        return (-2);
     }
 }
 

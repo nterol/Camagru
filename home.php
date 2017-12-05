@@ -1,9 +1,8 @@
 <?php
 session_start();
 include('./functions/settings.php');
-
-$profile = get_info($_SESSION['id'], $_SESSION['username']);
 print_r($_SESSION);
+$profile = get_info($_SESSION['id'], $_SESSION['username']);
 if ($profile[0]['notifications'] == 'Y')
     $notif = 'Désactiver les notifications';
 else if ($profile[0]['notifications'] == 'N')
@@ -29,15 +28,21 @@ else if ($profile[0]['notifications'] == 'N')
             <div class="title-forms">
                 <h1>My home</h1>
             </div>
-            <?php if (!isset($_SESSION)) { ?>
+            <?php if ($_SESSION['username'] == null) { ?>
             <div class="container">
                 <h1>
                     <?php echo htmlspecialchars("You're not connected") ?>
                 </h1>
                 <br/>
-                <a href="../signup.php">
-                    <div>Go Sign Up</div>
+                <a href="./gallery.php">
+                    <div>Go Login</div>
                 </a>
+                <br/>
+                <span style="text-align:center;">Or</span>
+                <br/>
+                <a href="./signup.php">Sign Up</a>
+            </div>
+        </div>
                 <?php
         } else { ?>
                     <div class="container profil">
@@ -100,7 +105,7 @@ else if ($profile[0]['notifications'] == 'N')
                             </div>
                             <form method='post' action='./forms/settings.php'>
                                 <input placeholder="Change my mail adress" id="change_mail" name="change_mail" type="text" size="20">
-                                <input name="submit_username" type="submit" value="OK">
+                                <input name="submit_mail" type="submit" value="OK">
                             </form>
                         </div>
                         <div class="password">
