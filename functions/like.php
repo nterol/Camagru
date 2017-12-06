@@ -45,13 +45,16 @@ function  get_like($gId, $img) {
 }
 
 function unlike_all($gId, $img) {
-    include_once("./config/database.php");
+    include("../config/database.php");
 
     try {
         $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
         $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = $lol->prepare("DELETE FROM likes WHERE galleryid=:gId AND img=:img");
-        $query->execute(array(':gId' => $gId, ':img' => $img));
+        // $query = $lol->prepare("ALTER TABLE likes DROP FOREIGN KEY userid, galleryid WHERE galleryid=:id AND img=:img");
+        // $query->execute(array(':id' => $gId, ':img' => $img));
+        // $query->closeCursor();     
+        $query = $lol->prepare("DELETE FROM likes WHERE galleryid=:id AND img=:img");
+        $query->execute(array(':id' => $gId, ':img' => $img));
         return (0);
     } catch (PDOException $e) {
         return ($e->getMessage());

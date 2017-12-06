@@ -35,10 +35,14 @@ function get_comment($galleryId, $img) {
 
   function uncomment_all($imgId, $img) {
     try {
+      include('../config/database.php');
       $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
       $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $query = $lol->prepare("DELETE FROM comments WHERE galleryid=:gId AND img=:img");
-      $query->execute(array(':gId' => $gId, ':img' => $img));
+      // $query = $lol->prepare("ALTER TABLE comments DROP FOREIGN KEY userid, galleryid WHERE galleryid=:id AND img=:img");
+      // $query->execute(array(':gId' => $imgId, ':img' => $img));
+      // $query->closeCursor();     
+      $query = $lol->prepare("DELETE FROM comments WHERE galleryid=:gId AND galleryimg=:img");
+      $query->execute(array(':gId' => $imgId, ':img' => $img));
       return (0);
     } catch (PDOException $e) {
       return ($e->getMessage());

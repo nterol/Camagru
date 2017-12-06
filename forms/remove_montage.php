@@ -2,6 +2,8 @@
 session_start();
 
 include_once('../functions/montage.php');
+include_once('../functions/like.php');
+include_once('../functions/comments.php');
 
 if (isset($_SESSION)) {
 
@@ -11,12 +13,16 @@ if (isset($_SESSION)) {
     $pattern = '/^[0-9a-z]{13}.png$/';
     
     if ($img == "" || $img == null || preg_match_all($pattern, $img) === 0 || $imgId == null || $img == "" || !is_numeric($imgId)) {
-        return ;
-        header('Location: '. $_SERVER['REQUEST_URI']);
+        header('Location: '. $_SERVER['HTTP_REFFERER']);
     }
-        $var = post_like($uid, $imgId, $img);
-    if ($var == 0)
-        header('Location: ' . $_SERVER['REQUEST_URI']);
+    $var = remove_montage($uid, $imgId, $img);
+    $like = unlike_all($imgId, $img);
+    $comment = uncomment_all($imgId, $img);
+    if ($var == 0 && $like == 0 && $comment == 0)
+        header('Location: ../gallery.php');
+    else if ($var== -1)
+        echo "nik ta mere";
 } else {
     header('Location: ./config/setup.php');
+
 }

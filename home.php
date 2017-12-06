@@ -1,12 +1,11 @@
 <?php
 session_start();
 include('./functions/settings.php');
-print_r($_SESSION);
 $profile = get_info($_SESSION['id'], $_SESSION['username']);
 if ($profile[0]['notifications'] == 'Y')
-    $notif = 'Désactiver les notifications';
+    $notif = "Désactiver les notifications";
 else if ($profile[0]['notifications'] == 'N')
-    $notif = 'Activer les notifications';
+    $notif = "Activer les notifications";
 ?>
     <!DOCTYPE HTML>
     <html>
@@ -15,7 +14,7 @@ else if ($profile[0]['notifications'] == 'N')
 
         <title>Settings</title>
         <meta charset="utf-8">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="style/parts.css">
         <link rel="stylesheet" type="text/css" href="style/forms.css">
         <link rel="stylesheet" type="text/css" href="style/home.css">
@@ -52,7 +51,7 @@ else if ($profile[0]['notifications'] == 'N')
                                 <strong>My Username :</strong><br/>
                                 <span><?php echo htmlspecialchars($profile[0]['username']);?></span>
                                 <?php if (isset($_SESSION['error']['username'])) {?>
-                                <div class="message" onclick="this.style.display ='none';">
+                                <div class="message error" onclick="this.style.display ='none';">
                                     <span onclick="this.parentNode.style.display ='none';" class="closebtn">&otimes;</span>
                                     <p>
                                         <?php 
@@ -62,7 +61,7 @@ else if ($profile[0]['notifications'] == 'N')
                                 </div>
                                 <?php
                 } else if (isset($_SESSION['success']['username'])) { ?>
-                                    <div class="message" onclick="this.style.display = 'none';">
+                                    <div class="message success" onclick="this.style.display = 'none';">
                                         <span onclick="this.parentNode.style.display = 'none';" class="closebtn">&otimes;</span>
                                         <p>
                                             <?php 
@@ -83,7 +82,7 @@ else if ($profile[0]['notifications'] == 'N')
                                 <span><?php echo htmlspecialchars($profile[0]['mail']); ?>
                         </span>
                         <?php if (isset($_SESSION['error']['mail'])) {?>
-                                <div class="message" onclick="this.style.display ='none';">
+                                <div class="message error" onclick="this.style.display ='none';">
                                     <span onclick="this.parentNode.style.display ='none';" class="closebtn">&otimes;</span>
                                     <p>
                                         <?php 
@@ -93,7 +92,7 @@ else if ($profile[0]['notifications'] == 'N')
                                 </div>
                                 <?php
                 } else if (isset($_SESSION['success']['mail'])) { ?>
-                                    <div class="message" onclick="this.style.display = 'none';">
+                                    <div class="message success" onclick="this.style.display = 'none';">
                                         <span onclick="this.parentNode.style.display = 'none';" class="closebtn">&otimes;</span>
                                         <p>
                                             <?php 
@@ -112,7 +111,7 @@ else if ($profile[0]['notifications'] == 'N')
                             <span>Change password</span>
                             <?php if (isset($_SESSION['error']['password'])) {
                     ?>
-                            <div class="message" onclick="this.style.display = 'none';">
+                            <div class="message error" onclick="this.style.display = 'none';">
                                 <span onclick="this.parentNode.style.display = 'none';" class="closebtn">&otimes;</span>
                                 <p>
                                     <?php echo htmlspecialchars($_SESSION['error']['password']);
@@ -121,7 +120,7 @@ else if ($profile[0]['notifications'] == 'N')
                             </div>
                             <?php
                 } else if (isset($_SESSION['success']['password'])) { ?>
-                                <div class="message" onclick="this.style.display = 'none';">
+                                <div class="message success" onclick="this.style.display = 'none';">
                                     <span onclick="this.parentNode.style.display = 'none';" class="closebtn">&otimes;</span>
                                     <p>
                                         <?php 
@@ -142,7 +141,7 @@ else if ($profile[0]['notifications'] == 'N')
                             </form>
                             <?php if (isset($_SESSION['error']['notifications'])) {
                     ?>
-                            <div class="message" onclick="this.style.display = 'none';">
+                            <div class="message error" onclick="this.style.display = 'none';">
                                 <span onclick="this.parentNode.style.display = 'none';" class="closebtn">&otimes;</span>
                                 <p>
                                     <?php echo htmlspecialchars($_SESSION['error']['notifications']);
@@ -151,7 +150,7 @@ else if ($profile[0]['notifications'] == 'N')
                             </div>
                             <?php
                 } else if (isset($_SESSION['success']['notifications'])) { ?>
-                                <div class="message" onclick="this.style.display = 'none';">
+                                <div class="message success" onclick="this.style.display = 'none';">
                                     <span onclick="this.parentNode.style.display = 'none';" class="closebtn">&otimes;</span>
                                     <p>
                                         <?php echo htmlspecialchars($_SESSION['success']['notifications']);

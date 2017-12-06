@@ -64,38 +64,38 @@ function change_password($password, $uid)
         $query->execute(array(':id' => $uid));
         $original = $query->fetchAll();
         $query->closeCursor();
-        if ($original[0]['password'] == $password) {
-            $query = $dbc->prepare("UPDATE users SET password=:password WHERE token=:token");
-            $query->execute(array(':password' => $password, ':token' => $token));
+        if ($original[0]['password'] != $password) {
+            $query = $dbc->prepare("UPDATE users SET password=:password WHERE id=:id");
+            $query->execute(array(':password' => $password, ':id' => $uid));
             $query->closeCursor();
-            $query= $dbc->prepare("SELECT password FROM users WHERE token=:token");
-            $query->execute(array(':token' => $token));
+            $query= $dbc->prepare("SELECT password FROM users WHERE id=:id");
+            $query->execute(array(':id' => $uid));
             $check = $query->fetch();
             if ($check['password'] == $password) {
-                $_SESSION['change_success'] = true;
-                return (0);
+                $_SESSION['success']['password'] = "Ton mot de passe a bien été modifié";
+                return ($check);
             } else {
-                $_SESSION['error'] = "Il y a eu un problème";
+                $_SESSION['error']['password'] = "Il y a eu un problème";
                 return (-1);
             }
         } else {
-            $_SESSION['error'] = "Tu ne peux pas réutiliser un vieux mot de passe";
-        return (-1);
+            $_SESSION['error']['password'] = "Tu ne peux pas réutiliser un vieux mot de passe";
+            return (-1);
         }
     } catch (PDOException $e) {
-        $_SESSION['error'] = $e->getMessage();
-        return (-1);
+        $_SESSION['error']['password'] = $e->getMessage();
+        return (-2);
     }
 }
 
-function set_notifications($uid, $onOrOff) {
+function set_notifications($uid, $notifs) {
     include("../config/database.php");
 
     try {
         $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
         $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = $lol->prepare("UPDATE users SET notifications=:val WHERE id=:id");
-        $query->execute(array(':val'=> $onOrOff,':id' => $uid));
+        $query->execute(array(':val'=> $notifs, ':id' => $uid));
         return (0);
     } catch (PDOException $e) {
         return($e->getMessage());

@@ -112,24 +112,29 @@ function videoError() {
 }
 
 function onBoxChecked(box) {
+    document.getElementById('submit_file').disabled = false;
     if (cameraAvailable) {
         button.style.display = "block";
         if (box.id === "diademe.png") {
+            document.getElementById('file_filter').value = "diademe.png";
             diademe.style.display = "block";
             lunettes.style.display = "none";
             illuminati.style.display = "none";
             barbe.style.display = "none";
         } else if (box.id === "lunettes.png") {
+            document.getElementById('file_filter').value = "lunettes.png";
             diademe.style.display = "none";
             lunettes.style.display = "block";
             illuminati.style.display = "none";
             barbe.style.display = "none";
         } else if (box.id === "illuminati.png") {
+            document.getElementById('file_filter').value = "illuminati.png";
             diademe.style.display = "none";
             lunettes.style.display = "none";
             illuminati.style.display = "block";
             barbe.style.display = "none";
         } else if (box.id === "barbe.png") {
+            document.getElementById('file_filter').value = "barbe.png";
             diademe.style.display = "none";
             lunettes.style.display = "none";
             illuminati.style.display = "none";
@@ -137,31 +142,31 @@ function onBoxChecked(box) {
         }
     }
     inputFile.style.display = "block";
-    if (inputFile.files.length) {
-        var image = new Image();
-        var img = new Image();
-        image.addEventListener("load", () => {
-            canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-            canvas.getContext("2d").drawImage(image, 0, 0, image.width, image.height, 0, 0, 640, 480);
-            var data64img = canvas.toDataURL(image.type);
-            window.URL.revokeObjectURL(file);
+    // if (inputFile.files.length) {
+    //     var image = new Image();
+    //     var img = new Image();
+    //     image.addEventListener("load", () => {
+    //         canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    //         canvas.getContext("2d").drawImage(image, 0, 0, image.width, image.height, 0, 0, 640, 480);
+    //         var data64img = canvas.toDataURL(image.type);
+    //         window.URL.revokeObjectURL(file);
 
-            img.src = document.querySelector('input[name="img"]:checked').value;
-            var split = img.src.split("/");
-            var file = split[split.length - 1];
-            ocnsole.log("hello");
-            // if (file === "diademe.png")
-            //     canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 180, 0, 240, 180);
-            // else if (file === "lunettes.png")
-            //     canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 240, 0, 240, 180);
-            // else if (file === "illuminati.png")
-            //     canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 206, 0, 240, 180);
-            // else if (file === "barbe.png")
-            //     canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 140, 200, 330, 250);
-            pickFile.onclick = () => sendMontage(data64img, file);
-        }, false);
-        image.src = window.URL.createObjectURL(inputFile.files[0]);
-    }
+    //         img.src = document.querySelector('input[name="img"]:checked').value;
+    //         var split = img.src.split("/");
+    //         var file = split[split.length - 1];
+    //         console.log("hello");
+    //         // if (file === "diademe.png")
+    //         //     canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 180, 0, 240, 180);
+    //         // else if (file === "lunettes.png")
+    //         //     canvas.getContext("2d").drawImage(img, 0, 0, 1024, 768, 240, 0, 240, 180);
+    //         // else if (file === "illuminati.png")
+    //         //     canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 206, 0, 240, 180);
+    //         // else if (file === "barbe.png")
+    //         //     canvas.getContext("2d").drawImage(img, 0, 0, 1064, 768, 140, 200, 330, 250);
+    //         pickFile.onclick = () => sendMontage(data64img, file);
+    //     }, false);
+    //     image.src = window.URL.createObjectURL(inputFile.files[0]);
+    // }
 }
 
 function sendMontage(imgData64, filterImg) {

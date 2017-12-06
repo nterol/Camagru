@@ -24,7 +24,7 @@ $montages = get_all_montage();
         <div class="welcome" onclick="this.style.display = 'none';">
             <span onclick="this.parentNode.style.display = 'none';" class="closebtn">&otimes;</span>
             <p>Bienvenue sur camagru,
-                <?php echo htmlspecialchars(ucfirst($_SESSION['username'])); ?>
+                <?=htmlspecialchars(ucfirst($_SESSION['username'])); ?>
             </p>
         </div>
         <div class="body">
@@ -53,24 +53,36 @@ $montages = get_all_montage();
                 <div class="captureFile" id="pickFile">
                     <img class="camera" src="img/camera.png" />
                 </div>
-                <input type="file" id="takePicture" style="display:none;" accept="image/*">
+                <form method="POST" action="forms/input_montage.php" enctype="multipart/form-data">
+                    <input type='text' id='file_filter' style="display:none;" name="filter">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="4194304"/>
+                    <input type="file" id="takePicture" style="display:none;" accept="image/*" name="file">
+                    
+                    <button id='submit_file' type='submit' name="submit_input" value="OK" disabled>Upload</button>
+                </form>
+                
             </div>
             <div class="side">
                 <div class="title">Montages</div>
-                <div id="miniatures">
-                    <?php
-    $gallery="";
+                    <div id="miniatures">
+                    <?php            
+                    $gallery= '';
     if ($montages != null) {
         foreach($montages as $i) {
-            $class = "icon";
             if ($i['userid'] === $_SESSION['id']) {
-            
+                $cross= htmlspecialchars('&otimes');
             $gallery .= "
-            <div class=\"overlay-gallery\">
-                <a href=\" ./forms/remove_montage.php?img=\"". $i['img'] ."&id=". $i['id'] ."\">
-                    <img class=\"" .$class . "\" src=\"./montage/" . $i['img'] . "\"data-userid=\"" . $i['userid']. "\"/>
-                <a>
+            <div class=\"photoo\">
+                    <img class=\"icon deletable\" src=\"./montage/" . $i['img'] . "\"data-userid=\"" . $i['userid']. "\"/>
+                        <div class=\"overlay-gallery\">
+                            <a href=\"forms/remove_montage.php?img=". $i['img'] ."&id=". $i['id'] ."\">
+                                <span class=\"delete\">⊗</span>
+                            </a>
+                        </div>
             </div>";
+            }
+            else {
+                $gallery .=  "<img class=\"icon\" src=\"./montage/" . $i['img'] . "\"data-userid=\"" . $i['userid']. "\"/>";
             }
         }
         echo $gallery;

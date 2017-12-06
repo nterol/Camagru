@@ -42,17 +42,17 @@ function remove_montage($uid, $imgId, $img) {
     include_once('../config/database.php');
     
          try {
-             $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
-             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
              $query = $dbh->prepare("DELETE FROM gallery WHERE id=:id AND img=:img AND userid=:uid");
              $query->execute(array(':id' => $imgId, ':img' => $img, ':uid' => $uid));
-             $query->close();
-             $deleteFromLike = unlike_all($imgId, $img);
-             $deleteFromComment = uncomment_all($imgId, $img);
-             if ($deleteFromComment == 0 && $deleteFromLike == 0) {
+             $query->closeCursor();
+            //  $deleteFromLike = unlike_all($imgId, $img);
+            //  $deleteFromComment = uncomment_all($imgId, $img);
+            //  if ($deleteFromComment == 0 && $deleteFromLike == 0) {
                  return (0);
-             } else 
-             return (-1);
+            //  } else 
+            //  return (-1);
             } catch (PDOException $e) {
                 return ($e->getMessage());
             }

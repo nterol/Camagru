@@ -52,12 +52,14 @@ function define_like($firstLove) {
 
 function display_infinite($montages) {
     $current_username = $_SESSION['username'];
+    $i = 0;
     foreach($montages as $picture) {
+        $i++;
         $firstLove = get_like($picture['id'], $picture['img']);
         $nb_like = count($firstLove);
         $like = define_like($firstLove);
         $comments = get_comment($picture['id'], $picture['img']);
-        if ($picture['id'] > 6) {
+        if ($i > 6) {
             $card_class = "card-hidden";
         } else $card_class = "card";
         echo "

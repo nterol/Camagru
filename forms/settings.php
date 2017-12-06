@@ -5,8 +5,7 @@ $username = $_SESSION['username'];
 $uid = $_SESSION['id'];
 
 function take_me_home() {
-    // header('Location: ../home.php');
-    print_r($_SESSION);
+    header('Location: ../home.php');
 }
 
 if (isset($_POST['submit_new_password'])) {
@@ -29,16 +28,18 @@ if (isset($_POST['submit_new_password'])) {
     } else if ($_POST['password_one'] !== $_POST['password_two']) {
         $_SESSION['error']['password'] = "Les mots de passe ne correspondent pas";
         take_me_home();
-    }
-    else if ($_POST['password_one'] == $_POST['password_two']) {
+    } else if ($_POST['password_one'] == $_POST['password_two']) {
         $pass = htmlspecialchars($_POST['password_one']);
         $hashPass = hash('whirlpool', $pass);
         $val = change_password($hashPass, $_SESSION['id']);
         if ($val == 0) {
             $_SESSION['success']['password'] = "Ton mot de passe a bien été changé";
             take_me_home();
-        } else if ($val == -1)
+        } else if ($val == -1) {
             take_me_home();
+        } else if ($val == -2) {
+            take_me_home();
+        }
     }
 }
 
@@ -65,21 +66,20 @@ if (isset($_POST['submit_username'])) {
     }
 }
 
-if (isset($_POST['notifications'])) { 
-    if ($notif == "Désactiver les notifications") 
+if (isset($_POST['notifications'])) {
+    $notif = $_POST['notifications'];
+    if ($notif == "Désactiver les notifications")
         $switch = "N";
     if ($notif == "Activer les notifications")
         $switch = "Y";
     if ($switch != null) {
         $val = set_notifications($_SESSION['id'], $switch);
-    } else {
-        $_SESSION['error']['notifications'] = $notif;
     }
     if ($val == 0) {
-        $_SESSION['success'] = "Vos préférences ont bien été mises à jour";
+        $_SESSION['success']['notifications'] = "Vos préférences ont bien été mises à jour";
         header('Location: ../home.php');
      } else {
-        $_SESSION['error'] = "Il y a eu un problème avec la mise à jour de vos préférences";
+        $_SESSION['error']['notifications'] = "Il y a eu un problème avec la mise à jour de vos préférences";
         header('Location: ../home.php');
     }
 }

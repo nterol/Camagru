@@ -1,13 +1,13 @@
 body {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: linear-gradient(120deg, 60%#00c9ff, 10% yellow, #92fe9d);
     background-repeat: no-repeat;
 }
 
 .welcome {
-    margin-left: 0.5em;
-    margin-right: 0.5em;
+    margin: 0 auto;
+    width: 50%;
     border-radius: 5px;
     grid-area: welcome;
     padding: 0.2em;
@@ -57,8 +57,9 @@ body {
 
 .title {
     text-align: center;
-    background-color: ;
-    margin-bottom: 5px;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    font-weight: bold;
 }
 
 .select {
@@ -142,6 +143,36 @@ input:checked {
     display: none;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+#takePicture {
+    font-size: 1em;
+    margin: 1em auto;
+    width: 50%;
+    padding: 0.5em;
+}
+
+#submit_file {
+    font-size: 1em;
+    margin: 1em auto;
+    padding: 0.5em 1em;
+    border-radius: 25%/50%;
+    border: 2px solid black;
+    color: black;
+    background-color: white;
+}
+
+#submit_file:hover {
+    cursor: pointer;
+    background: linear-gradient(25deg, violet, blue);
+    font-weight: bold;
+    color: white;
+    border: none;
+}
+
 .capture:hover,
 .captureFile:hover {
     cursor: pointer;
@@ -158,6 +189,43 @@ video {
 .camera {
     width: 50px;
     height: 50px;
+}
+
+.photoo {
+    width: inherit;
+    position: relative;
+}
+
+.overlay-gallery {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.photoo:hover .overlay-gallery {
+    opacity: 50;
+}
+
+.photoo:hover .deletable {
+    filter: blur(4px);
+    -o-filter: blur(4px);
+    -ms-filter: blur(4px);
+    -moz-filter: blur(4px);
+    -webkit-filter: blur(4px);
+}
+
+.delete {
+    position: absolute;
+    top: 5%;
+    left: 30%;
+    font-size: 8em;
+    color: red;
 }
 
 .icon {
