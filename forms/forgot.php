@@ -4,7 +4,7 @@ session_start();
 include '../functions/reset_password.php';
 
 $mail = $_POST['email'];
-$host = $_SERVER['HTTP_POST'].str_replace("/forms/forgot.php", "", $_SERVER['REQUEST_URI']);
+$host = $_SERVER['HTTP_HOST'].str_replace("/forms/forgot.php", "", $_SERVER['REQUEST_URI']);
 
 $_SESSION['error'] = null;
 

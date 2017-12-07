@@ -61,7 +61,6 @@ function send_comment_mail($mail, $toUsername, $comment, $fromUsername, $img, $h
     <body>
       Hello, '. htmlspecialchars($toUsername). '</br>
       A user just commented one of your Picture !</br>
-      <img src="http://'. $ip . '/montage/'. $img . '" style="width: 388px;height: 291px; display:block; margin: 20px;"></img>
       <span>'. htmlspecialchars($fromUsername) . ': '. htmlspecialchars($comment). '</span>
     </body>
   </html>';

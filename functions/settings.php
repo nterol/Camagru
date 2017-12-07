@@ -80,7 +80,7 @@ function change_password($password, $uid)
             $check = $query->fetch();
             if ($check['password'] == $password) {
                 $_SESSION['success']['password'] = "Ton mot de passe a bien été modifié";
-                return ($check);
+                return (0);
             } else {
                 $_SESSION['error']['password'] = "Il y a eu un problème";
                 return (-1);

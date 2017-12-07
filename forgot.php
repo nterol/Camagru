@@ -23,7 +23,8 @@ session_start();
           <input name="submit" type="submit" value="Send">
           <span>
             <?php
-            echo $_SESSION['error'];
+            if (!empty($_SESSION['error']))
+              echo $_SESSION['error'];
             $_SESSION['error'] = null;
             if (isset($_SESSION['forgot_success'])) {
             echo "Hold on tight fella, an email has been sent to your address";

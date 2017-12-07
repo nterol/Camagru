@@ -27,6 +27,8 @@ include_once './functions/get_verify.php';
         <strong>
         Wesh pelo y a eu un piti souci
         </strong>
+        <br/>
+          <a href="./signup.php"><div>Se reinscrire</div></a>
         </div>
         <?php
         } ?>

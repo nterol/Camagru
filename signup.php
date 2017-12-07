@@ -19,6 +19,12 @@ session_start();
         <div class="title-forms">
             <h1>SIGN UP !</h1>
         </div>
+        <?php if (isset($_SESSION['username'])) { ?>
+        <div class="container">
+            <span> Tu es deja connecte en tant que <?=$_SESSION['username']?>
+            <br/><a href="./forms/disconnect.php"> Se deconnecter</a>
+            </div> <?php
+        } else { ?>
         <div class="container signup">
             <form method="post" action="forms/signup_check.php">
                 <label>Email</label>
@@ -41,6 +47,7 @@ session_start();
                 </span>
             </form>
         </div>
+                    <?php } ?>
     </div>
     <?php include('./parts/footer.php') ?>
 </body>

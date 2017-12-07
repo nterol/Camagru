@@ -1,7 +1,6 @@
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(120deg, 60%#00c9ff, 10% yellow, #92fe9d);
     background-repeat: no-repeat;
 }
 
@@ -216,7 +215,6 @@ video {
     filter: blur(4px);
     -o-filter: blur(4px);
     -ms-filter: blur(4px);
-    -moz-filter: blur(4px);
     -webkit-filter: blur(4px);
 }
 
@@ -376,21 +374,17 @@ video {
     line-height: 160px
 }
 
-
-}
 @media screen and (max-width: 660px) {
     .body {
         display: inline;
         width: 450px;
     }
-
     .side {
         width: 100%;
         max-width: 400px;
         margin-right: auto;
         margin-left: auto;
     }
-
     .main {
         margin-left: auto;
         margin-right: auto;

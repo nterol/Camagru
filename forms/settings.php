@@ -4,6 +4,8 @@ include_once("../functions/settings.php");
 $username = $_SESSION['username'];
 $uid = $_SESSION['id'];
 
+$pattern = '/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/';
+
 function take_me_home() {
     header('Location: ../home.php');
 }
@@ -21,13 +23,20 @@ if (isset($_POST['submit_new_password'])) {
     $_POST['password_two'] == '' || 
     $_POST['password_two'] == null || 
     strlen($_POST['password_one']) < 5 || 
-    strlen($_POST['password_one']) > 255 ||
+    strlen($_POST['password_one']) > 40 ||
     strlen($_POST['password_two']) < 5 || 
-    strlen($_POST['password_two']) > 255) {
-        $_SESSION['error']['password'] = "Ton nouveau mot de passe doit être compris entre 3 et 255 caractères";
+    strlen($_POST['password_two']) > 40) {
+        $_SESSION['error']['password'] = "Ton nouveau mot de passe doit être compris entre 3 et 40 caractères";
+        take_me_home();
+    
     } else if ($_POST['password_one'] !== $_POST['password_two']) {
         $_SESSION['error']['password'] = "Les mots de passe ne correspondent pas";
         take_me_home();
+    
+    } else if(!preg_match_all($pattern, $_POST['password_one']) || !preg_match_all($pattern, $_POST['password_two'])) {
+        $_SESSION['error']['password'] = "Ton mot de passe doit comprendre au moins un chiffre mais aucun espace";
+        header('Location: ../home.php');
+    
     } else if ($_POST['password_one'] == $_POST['password_two']) {
         $pass = htmlspecialchars($_POST['password_one']);
         $hashPass = hash('whirlpool', $pass);

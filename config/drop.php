@@ -1,4 +1,8 @@
 <?php
+session_start();
+$_SESSION['error'] = null;
+$_SESSION['id'] = null;
+$_SESSION['username'] = null;
 include 'database.php';
 ?>
 
@@ -23,7 +27,7 @@ try {
   $db->exec($sql);
   echo "database was dropped successfully";
 } catch (PDOException $e) {
-  echo "There was a mistake while dropping the database\n".$e->getMessage()."</br>Aborting Process</br>";
+  echo "Database already dropped";
 }
 $dir = '../montage/';
 function deleteDirectory($dir) {

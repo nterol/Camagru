@@ -13,7 +13,7 @@
           $query->execute(array(':username' => $username, ':mail' => $mail));
 
           if ($val = $query->fetch()) {
-              $_SESSION['error'] = "Gro t'existes déjà, log toi bouffon";
+              $_SESSION['error'] = "Votre profil existe deja, connectez vous";
               $query->closeCursor();
               return (-1);
           }
@@ -27,6 +27,6 @@
           $_SESSION['signup_success'] = true;
           return(0);
       } catch (PDOException $e) {
-          $_SESSION['error'] = "COUCOU :".$e->getMessage()."Aborting process";
+          $_SESSION['error']=  "La DB n'existe pas";
       }
   }

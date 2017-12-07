@@ -8,17 +8,20 @@ $pass_two = $_POST['password2'];
 $previous = $_SERVER['HTTP_REFERER'];
 $token = $_SESSION['token'];
 
+$pattern = '/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/';
+
 $_SESSION['error'] = null;
 
-if ($pass_one == "" || $pass_one == null || strlen($pass_one) < 5) {
-    $_SESSION['error'] = "Ton mot de passe doit avoir entre 5 et 255 caracteres";
+if ($pass_one == "" || $pass_one == null || strlen($pass_one) < 5 || strlen($pass_one) > 40) {
+    $_SESSION['error'] = "Ton mot de passe doit avoir entre 5 et 40 caracteres";
     header("Location: ".$previous);
-}
-if ($pass_two == "" || $pass_two == null || strlen($pass_two) < 5) {
+} elseif ($pass_two == "" || $pass_two == null || strlen($pass_two) < 5 || strlen($pass_two) > 40) {
     $_SESSION['error'] = "Penses à bien confirmer ton mot de passe";
     header("Location: ".$previous);
-}
-if (strcmp($pass_one, $pass_two) !== 0) {
+} elseif (!preg_match_all($pattern, $pass_one) && !preg_match_all($pattern, $pass_two)) {
+    $_SESSION['error'] = "Ton mot de passe doit contenir au moins un chiffre et pas d'espaces";
+    header('Location: '.$previous);
+} elseif (strcmp($pass_one, $pass_two) !== 0) {
     $_SESSION['error'] = "Les mots de passes ne correspondent pas";
     header("Location: ".$previous);
 }
@@ -30,4 +33,4 @@ echo $token;
 print_r($_SESSION);
 
 change_password($password, $token);
-// header("Location: ../change_password.php");
+header("Location: ../change_password.php");

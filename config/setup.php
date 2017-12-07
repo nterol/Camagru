@@ -31,7 +31,7 @@ try {
     $db->exec($sql);
     echo "<li>DB Camagru successfuly created</li>";
 } catch (PDOException $e) {
-    echo "<li>Could not generate database sorry :".$e->getMessage()."</br>Aborting process</li>";
+    echo "Database already exists";
     ?>  </br>
     <a href="./drop.php"><div>Drop DB</div></a>
         </ul>

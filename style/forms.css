@@ -42,40 +42,16 @@ body {
     margin-bottom: 5em;
 }
 
-
-/* .container:hover {
-    padding: 2.25em 1.6875em;
-    background-image: -webkit-repeating-radial-gradient(center center, rgba(0, 0, 0, 2), rgba(0, 0, 0, 2) 1px, transparent 1px, transparent 100%);
-    background-image: -moz-repeating-radial-gradient(center center, rgba(0, 0, 0, 2), rgba(0, 0, 0, 2) 1px, transparent 1px, transparent 100%);
-    background-image: -ms-repeating-radial-gradient(center center, rgba(0, 0, 0, 2), rgba(0, 0, 0, 2) 1px, transparent 1px, transparent 100%);
-    background-image: repeating-radial-gradient(center center, rgba(0, 0, 0, 2), rgba(0, 0, 0, 2) 1px, transparent 1px, transparent 100%);
-    -webkit-background-size: 5px 5px;
-    -moz-background-size: 5px 5px;
-    background-size: 5px 5px;
-    background-color: #eafeea;
-} */
-
-.verify {
-    font-family: 'Roboto';
-    font-size: 18px;
-}
-
-.verify a div {
+a div {
     padding: 0.5em;
     color: black;
 }
 
-.verify a:before div {
-    color: black;
-    border: none;
-    padding: 0.5em;
-}
-
-.verify a:hover {
+a:hover {
     text-decoration: none;
 }
 
-.verify a:hover div {
+a:hover div {
     background-color: black;
     color: white;
     border: 1px solid black;
