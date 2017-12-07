@@ -22,9 +22,16 @@ function change_username($newName, $uid) {
     try {
         $dbc = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
         $dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = $dbc->prepare("UPDATE users SET username=:newname WHERE id=:id");
-        $query->execute(array(':newname' => $newName, ':id' => $uid));
-        return (0);
+        $query = $dbc->prepare("SELECT username FROM users WHERE username=:name");
+        $query->execute(array(':name' => $newName));
+        $check = $query->fetchAll();
+        $query->closeCursor();
+        if (empty($check)) {
+            $query = $dbc->prepare("UPDATE users SET username=:newname WHERE id=:id");
+            $query->execute(array(':newname' => $newName, ':id' => $uid));
+            return (0);
+        } else
+            return (-1);
 } catch (PDOException $e) {
         return ($e->getMessage());
     }

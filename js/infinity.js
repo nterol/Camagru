@@ -17,7 +17,3 @@ function datScroll() {
         i += 1;
     }
 }
-
-// function like() {
-
-// }

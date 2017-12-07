@@ -74,7 +74,7 @@
     width: 100%;
     overflow: hidden;
     display: flex;
-    margin-top: 16em;
+    position: fixed;
 }
 
 .footer span {

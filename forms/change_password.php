@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('./functions/change_password.php');
+include_once('../functions/change_password.php');
 
 //retrieve value :
 $pass_one = $_POST['password1'];
@@ -25,5 +25,9 @@ if (strcmp($pass_one, $pass_two) !== 0) {
 
 $password = $pass_one;
 
+echo $password;
+echo $token;
+print_r($_SESSION);
+
 change_password($password, $token);
-header("Location: ../change_password.php");
+// header("Location: ../change_password.php");

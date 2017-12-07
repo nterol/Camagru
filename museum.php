@@ -4,7 +4,6 @@
     // include_once("functions/like.php");
     include_once("functions/display_infinite.php");
     include_once("./functions/comments.php");
-
     $montages = get_all_montage();
 ?>
 <!DOCTYPE html>
@@ -23,11 +22,15 @@
       if (isset($montages['error'])) {
         echo $montages['error'];
         print_r($montages);
+      }else if (empty($montages)) {
+        ?> <div class="card">There is no pictures yet, come back later !</div> <?php 
       } else if ($montages != null) {
             display_infinite($montages);
           }
         ?>
     </div>
+    </div>
+    <?php include("parts/footer.php")?>
 </body>
 <script type="text/javascript" src="./js/infinity.js"></script>
 </html>

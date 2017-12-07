@@ -7,18 +7,25 @@ $_SESSION['token'] = $_GET['token'];
  <html>
  <head>
    <title>CAMAGRU - PASSWORD CHANGE</title>
+   <link rel="stylesheet" type="text/css" href="style/parts.css">
+   <link rel="stylesheet" type="text/css" href="style/forms.css">
  </head>
  <body>
- <div id="login">
+ <?php include('./parts/header.php') ?>
+ <div class="body-forms">
+ <div class="container">
 <?php
 if (isset($_SESSION['change_success'])) {
      ?>
   Changement confirmé !
   <a href="./index.php">Se connecter</a>
+  </div>
+  </div>
   <?php
  } else {
      ?>
-   <div class="title">New Password</div>
+   <div class="title-forms"><h1>New Password</h1></div>
+   <div class="container changepass">
    <form method="post" action="forms/change_password.php">
      <label>Entre ton nouveau mot de passe</label>
      <input id="password" name="password1" type="password">
@@ -33,9 +40,12 @@ if (isset($_SESSION['change_success'])) {
      $_SESSION['error'] = null; ?>
      </span>
    </form>
+   </div>
  <?php
  }
   ?>
 </div>
+</div>
+<?php include('./parts/footer.php') ?>
  </body>
  </html>

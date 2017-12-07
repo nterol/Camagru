@@ -76,7 +76,18 @@ input:checked+label::before {
     flex-wrap: wrap;
 }
 
+@keyframes myanim {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .card {
+    animation-name: myanim;
+    animation-duration: 4s;
     margin: 1em 0.5em;
     width: 20em;
     border-radius: 6px;

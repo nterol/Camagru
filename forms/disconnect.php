@@ -4,4 +4,4 @@ $_SESSION['error'] = null;
 $_SESSION['id'] = null;
 $_SESSION['username'] = null;
 
-header("Location: ../gallery.php");
+header("Location: ../index.php");

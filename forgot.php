@@ -7,14 +7,11 @@ session_start();
   <header>
   <link rel="stylesheet" type="text/css" href="style/parts.css">
     <link rel="stylesheet" type="text/css" href="style/forms.css">
-    <link rel="stylesheet" type="text/css" href="style/header.css">
 
     <title>Password Forgot</title>
   </header>
   <body>
-    <?php include('./parts/header.php');
-    echo $_SERVER['HTTP_HOST'];
-    echo $_SERVER['REQUEST_URI']; ?>
+    <?php include('./parts/header.php') ?>
     <div class="body-forms">
       <div class="title-forms">
         <h1>FORGOT</h1>

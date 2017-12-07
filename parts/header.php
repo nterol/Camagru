@@ -1,13 +1,14 @@
 <div class="header">
+<?php 
+    $tab = explode("/", $_SERVER['REQUEST_URI']);
+   ?>
     <div class="Camagru">
-        <span class="camagru-title">Camagru.</span>
+        <span class="camagru-title" onclick="location.href='http://<?php echo $_SERVER['HTTP_HOST']."/".$tab[1] ?>/index.php'">Camagru.</span>
     </div>
     <div class="nav">
-        <?php 
-    $tab = explode("/", $_SERVER['REQUEST_URI']);
-    if ($tab[2] == "museum.php") {?>
 
-        <div class="button-header" onclick="location.href='http://<?php echo $_SERVER['HTTP_HOST']."/".$tab[1] ?>/gallery.php'">
+<? if ($tab[2] == "museum.php") {?>
+        <div class="button-header" onclick="location.href='http://<?php echo $_SERVER['HTTP_HOST']."/".$tab[1] ?>/index.php'">
             <span>Photobooth</span>
         </div>
     <?php } else {?>
@@ -18,7 +19,7 @@
     <?php } 
         if (isset($_SESSION['id'])) { 
             if ($tab[2] == "home.php") { ?>
-        <div class="button-header" onclick="location.href='http://<?php echo $_SERVER['HTTP_HOST']."/".$tab[1] ?>'/gallery.php'">
+        <div class="button-header" onclick="location.href='http://<?php echo $_SERVER['HTTP_HOST']."/".$tab[1] ?>'/index.php'">
             <span>Photobooth</span>
         </div>
     <?php } else { ?>
@@ -30,7 +31,7 @@
             <span> Deconnexion </span>
         </div>
     <?php } else { ?>
-        <div class="button-header" onclick="location.href='http://<?php echo $_SERVER['HTTP_HOST']."/".$tab[1]?>/gallery.php'">
+        <div class="button-header" onclick="location.href='http://<?php echo $_SERVER['HTTP_HOST']."/".$tab[1]?>/index.php'">
             <span>Login</span>
         </div>
     <?php } ?>

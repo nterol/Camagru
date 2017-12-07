@@ -63,7 +63,7 @@ function display_infinite($montages) {
             $card_class = "card-hidden";
         } else $card_class = "card";
         echo "
-        <div class=\"". $card_class ."\" id=\"post" .$picture['id'] . "\">
+        <div class=\"". $card_class ."\" id=\"post" .$i . "\">
             <div class=\"photoCell\" id=\"". $picture['id'] ."\">
                 <img class=\"photo\" src=\"montage/" . $picture['img'] . "\" />
                 <div class=\"overlay\">

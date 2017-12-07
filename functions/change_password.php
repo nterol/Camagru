@@ -27,16 +27,3 @@ function change_password($password, $token)
         return (-1);
     }
 }
-
-function notifications_off($uid, $username) {
-    include("../config/database.php");
-    include("f_database.php");
-
-    try {
-        $query = $lol->query("UPDATE users SET notifications='off' WHERE id=:uid AND username=:username");
-        $query->execute(array(':uid' => $uid, ':username' => $username));
-        return (0);
-    } catch (PDOException $e) {
-        return($e->getMessage());
-    }
-}

@@ -6,10 +6,12 @@ include 'database.php';
 <!DOCTYPE html>
 <html>
   <link rel="stylesheet" type="text/css" href="../style/forms.css">
+  <link rel="stylesheet" type="text/css" href="../style/parts.css">
 <head>
-  <title>Drop it like it's hot</title>
+  <title>The Set Up</title>
 </head>
 <body>
+<?php include('../parts/header.php') ?>
   <div class="body-forms">
     <div class="title-forms">SET UP</div>
       <div class="container verify">
@@ -32,6 +34,12 @@ try {
     echo "<li>Could not generate database sorry :".$e->getMessage()."</br>Aborting process</li>";
     ?>  </br>
     <a href="./drop.php"><div>Drop DB</div></a>
+        </ul>
+    </div>
+    </div>
+    </div>
+    <?php include('../parts/footer.php')?>
+    </body>
     <?php
     exit(-1);
 };
@@ -118,5 +126,6 @@ try {
           <a href="../signup.php"><div>Go Sign Up</div></a>
 </div>
 </div>
+<?php include('../parts/footer.php') ?>
 </body>
 </html>

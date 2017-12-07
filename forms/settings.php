@@ -59,7 +59,7 @@ if (isset($_POST['submit_username'])) {
                 $_SESSION['success']['username'] = "Ton username a bien été modifié";
                 header('Location: ../home.php');
             } else if ($new_name == -1) {
-                $_SESSION['error']['username'] = "Ton username n'a pas pu être updaté";
+                $_SESSION['error']['username'] = "Ce username est déjà pris";
                 header('Location: ../home.php');
             }
         }
@@ -87,6 +87,7 @@ if (isset($_POST['notifications'])) {
 if (isset($_POST['submit_mail'])) {
     if (isset($_POST['change_mail'])) {
         $newMail = htmlspecialchars($_POST['change_mail']);
+        $newMail = strtolower($newMail);
         if ($newMail == null || $newMail == '' || !filter_var($newMail, FILTER_VALIDATE_EMAIL)) {
             $_SESSION['error']['mail'] = "Le format du mail n'est pas valide";
             header('Location: ../home.php');

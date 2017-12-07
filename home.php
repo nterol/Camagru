@@ -33,7 +33,7 @@ else if ($profile[0]['notifications'] == 'N')
                     <?php echo htmlspecialchars("You're not connected") ?>
                 </h1>
                 <br/>
-                <a href="./gallery.php">
+                <a href="./index.php">
                     <div>Go Login</div>
                 </a>
                 <br/>

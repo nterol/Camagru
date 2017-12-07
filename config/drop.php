@@ -4,19 +4,18 @@ include 'database.php';
 
 <!DOCTYPE html>
 <html>
-  <link rel="stylesheet" type="text/css" href="../style/forms.css">
-  <link rel="stylsheet" type="text/css" href="../style/header.css">
 <head>
-  <title>Verify</title>
+  <link rel="stylesheet" type="text/css" href="../style/parts.css">
+  <link rel="stylesheet" type="text/css" href="../style/forms.css">
+  <title>Drop It like it's hot</title>
 </head>
 <body>
-<?php include "../parts/header.php" ?>
+<?php include('../parts/header.php') ?>
   <div class="body-forms">
     <div class="title-forms">DROP DATABASE</div>
       <div class="container verify">
         <div class="verify">
-
-<?php 
+        <?php
 try {
   $db = new PDO($DB_DSN_LIGHT, $DB_USER, $DB_PSSWD);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -56,5 +55,6 @@ deleteDirectory($dir);
          <a href="./setup.php"><div>Re-build DB ?</div></a>
 </div>
 </div>
+<?php include('../parts/footer.php')?>
 </body>
 </html>

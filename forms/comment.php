@@ -24,8 +24,8 @@ $theMessage = htmlspecialchars($comment);
 $val = post_comment($uid, $imgId, $imgName, $theMessage, $date);
 $userInfos = get_user_info($imgId, $imgName);
 $url = $_SERVER['HTTP_POST'].str_replace("/forms/comment.php", "",$_SERVER['REQUEST_URI']);
-
-if ($val == 0 && check_notif($_SESSION['id']) == 'Y') {
+$check = check_notif($_SESSION['id']);
+if ($val == 0 && $check['notifications'] == 'Y') {
     if ($userInfos['username']) {
         send_comment_mail($userInfos['mail'], $userInfos['username'], $theMessage, $username, $imgId, $url);
     }

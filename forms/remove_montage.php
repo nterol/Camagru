@@ -18,9 +18,10 @@ if (isset($_SESSION)) {
     $var = remove_montage($uid, $imgId, $img);
     $like = unlike_all($imgId, $img);
     $comment = uncomment_all($imgId, $img);
-    if ($var == 0 && $like == 0 && $comment == 0)
-        header('Location: ../gallery.php');
-    else if ($var== -1)
+    if ($var == 0 && $like == 0 && $comment == 0) {
+        unlink("../montage/".$img);
+        header('Location: ../index.php');
+    } else if ($var== -1)
         echo "nik ta mere";
 } else {
     header('Location: ./config/setup.php');

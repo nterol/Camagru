@@ -37,10 +37,7 @@ function get_comment($galleryId, $img) {
     try {
       include('../config/database.php');
       $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
-      $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      // $query = $lol->prepare("ALTER TABLE comments DROP FOREIGN KEY userid, galleryid WHERE galleryid=:id AND img=:img");
-      // $query->execute(array(':gId' => $imgId, ':img' => $img));
-      // $query->closeCursor();     
+      $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   
       $query = $lol->prepare("DELETE FROM comments WHERE galleryid=:gId AND galleryimg=:img");
       $query->execute(array(':gId' => $imgId, ':img' => $img));
       return (0);
@@ -48,6 +45,22 @@ function get_comment($galleryId, $img) {
       return ($e->getMessage());
   }
 }
+
+  function check_notif($uid) {
+    include ('../config/database.php');
+
+    try {
+      $lol = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
+      $lol->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $query = $lol->prepare("SELECT notifications FROM users WHERE id=:id");
+      $query->execute(array(':id' => $uid));
+      $notif = $query->fetchAll();
+      $query->closeCursor();
+      return ($notif[0]);
+    } catch(PDOException $e) {
+      return ($e->getMessage());
+    }
+  }
 
   function get_user_info($galleryId, $img) {
     include('../config/database.php');

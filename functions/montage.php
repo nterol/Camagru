@@ -27,7 +27,7 @@ function get_all_montage() {
         $val = $query->fetchAll();
         $query->closeCursor();
         if ($val != null) {
-            $query = $lol->prepare("SELECT * FROM gallery");
+            $query = $lol->prepare("SELECT * FROM gallery ORDER BY id DESC");
             $query->execute();
             $tab = $query->fetchAll();
             $query->closeCursor();
@@ -44,51 +44,11 @@ function remove_montage($uid, $imgId, $img) {
          try {
             $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-             $query = $dbh->prepare("DELETE FROM gallery WHERE id=:id AND img=:img AND userid=:uid");
-             $query->execute(array(':id' => $imgId, ':img' => $img, ':uid' => $uid));
-             $query->closeCursor();
-            //  $deleteFromLike = unlike_all($imgId, $img);
-            //  $deleteFromComment = uncomment_all($imgId, $img);
-            //  if ($deleteFromComment == 0 && $deleteFromLike == 0) {
-                 return (0);
-            //  } else 
-            //  return (-1);
+            $query = $dbh->prepare("DELETE FROM gallery WHERE id=:id AND img=:img AND userid=:uid");
+            $query->execute(array(':id' => $imgId, ':img' => $img, ':uid' => $uid));
+            $query->closeCursor();
+            return (0);
             } catch (PDOException $e) {
                 return ($e->getMessage());
             }
 }
-
-// function remove_montage($uid, $imgId, $img)
-// {
-//     include_once('../config/database.php');
-
-//     try {
-//         $dbh = new PDO($DB_DSN, $DB_USER, $DB_PSSWD);
-//         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//         $query = $dbh->prepare("SELECT * FROM gallery WHERE img=:img AND id=:id AND userid=:userid");
-//         $query->execute(array(':img' => $img, ':id' => $imgId, ':userid' => $uid));
-
-//         $val = $query->fetch();
-//         if ($val == null) {
-//             $query->closeCursor();
-//             return(-1);
-//         }
-//         $query->closeCursor();
-
-//         $query = $dbh->prepare("DELETE FROM `like` WHERE galleryid=:galleryid");
-//         $query->execute(array(':galleryid' => $val['id']));
-//         $query->closeCursor;
-
-//         $query = $dbh->prepare("DELETE FROM comment WHERE galleryid=:galleryid");
-//         $query->execute(array(':galleryid' => $val['id']));
-//         $query->closeCursor();
-
-//         $query = $dbh->prepare("DELETE FROM gallery WHERE img=:img AND userid=:userid");
-//         $query->execute(array(':img' => $img, ':userid' => $uid));
-//         $query->closeCursor();
-
-//         return (0);
-//     } catch (PDOException $e) {
-//         return ($e->getMessage());
-//     }
-// }

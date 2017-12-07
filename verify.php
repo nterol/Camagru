@@ -19,7 +19,7 @@ include_once './functions/get_verify.php';
         ?>
           <p>C'est bon tu es vérifié !</p>
           <br/>
-          <a href="./gallery.php"><div>Connexion</div></a>
+          <a href="./index.php"><div>Connexion</div></a>
         
         <?php
         } else {
