@@ -74,6 +74,7 @@ input:checked+label::before {
     grid-area: views;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 6em;
 }
 
 @keyframes myanim {
@@ -253,4 +254,11 @@ input[type=submit] {
     display: inline-block;
     margin: 0 auto;
     text-align: center;
+}
+
+@media only screen and (max-width: 400px) {
+    .thegrid {
+        display: flex;
+        flex-direction: column;
+    }
 }

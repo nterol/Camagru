@@ -24,13 +24,20 @@ if ($pass_one == "" || $pass_one == null || strlen($pass_one) < 5 || strlen($pas
 } elseif (strcmp($pass_one, $pass_two) !== 0) {
     $_SESSION['error'] = "Les mots de passes ne correspondent pas";
     header("Location: ".$previous);
+} else {
+   
+    $password = $pass_one;
+
+    $val = change_password($password, $token);
+    switch ($val) {
+        case(0):
+        header("Location: ../change_password.php");
+        break;
+        case(-1):
+        header("Location: ../change_password.php");
+        break;
+        case(-2):
+        header('Location: ../config/setup.php');
+        break;
+    }
 }
-
-$password = $pass_one;
-
-echo $password;
-echo $token;
-print_r($_SESSION);
-
-change_password($password, $token);
-header("Location: ../change_password.php");

@@ -69,6 +69,7 @@ $montages = get_all_montage();
                     $gallery= '';
     if ($montages != null) {
         foreach($montages as $i) {
+            if (file_exists('./montage/'.$i['img'])) {
             if ($i['userid'] === $_SESSION['id']) {
                 $cross= htmlspecialchars('&otimes');
             $gallery .= "
@@ -85,6 +86,7 @@ $montages = get_all_montage();
                 $gallery .=  "<img class=\"icon\" src=\"./montage/" . $i['img'] . "\"data-userid=\"" . $i['userid']. "\"/>";
             }
         }
+    }
         echo $gallery;
     } ?>
                 </div>

@@ -24,6 +24,6 @@ function reset_password($mail, $host)
         send_forgot_mail($mail, $username, $token, $host);
         return (0);
     } catch (PDOException $e) {
-        return ($e->getMessage());
+        return (-2);
     }
 }

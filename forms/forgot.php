@@ -12,7 +12,7 @@ if (($res = reset_password($mail, $host)) !== 0) {
     if ($res == -1) {
         $_SESSION['error'] = "User not found  ".$mail;
     } else {
-        $_SESSION['error'] = "Internal error   ".print_r($res);
+        header('Location: ./config/setup.php');
     }
 } else {
     $_SESSION['forgot_success'] = true;

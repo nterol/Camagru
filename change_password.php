@@ -16,12 +16,14 @@ $_SESSION['token'] = $_GET['token'];
  <div class="container">
 <?php
 if (isset($_SESSION['change_success'])) {
+  unset($_SESSION['change_success']);
      ?>
   Changement confirmé !
   <a href="./index.php">Se connecter</a>
   </div>
   </div>
   <?php
+
  } else {
      ?>
    <div class="title-forms"><h1>New Password</h1></div>
@@ -35,7 +37,7 @@ if (isset($_SESSION['change_success'])) {
      <span>
        <?php
        if ($_SESSION['error']) {
-           echo $_SESSION['error'];
+           echo htmlspecialchars($_SESSION['error']);
        }
      $_SESSION['error'] = null; ?>
      </span>

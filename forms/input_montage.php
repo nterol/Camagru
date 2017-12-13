@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+header('Location: '.$_SERVER['HTTP_REFERER']);
 include_once '../functions/montage.php';
 
 if (empty($_FILES) || empty($_POST)) {
@@ -96,6 +96,7 @@ if ($type !== null &&
                 header('Location: ../index.php');
             }
     }
+}
 }
 
 

@@ -55,6 +55,7 @@ function display_infinite($montages) {
     $i = 0;
     foreach($montages as $picture) {
         $i++;
+        if (file_exists('./montage/'.$picture['img'])) {
         $firstLove = get_like($picture['id'], $picture['img']);
         $nb_like = count($firstLove);
         $like = define_like($firstLove);
@@ -95,5 +96,6 @@ function display_infinite($montages) {
                     </div>
         </div>
         ";
+    }
     }
 } 

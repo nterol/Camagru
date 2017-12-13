@@ -13,7 +13,7 @@ function get_info($id, $username) {
         return ($profile);
 
     } catch (PDOException $e) {
-        return ($e->getMessage());
+        header('Location: ./config/setup.php');
     }
 }
 
